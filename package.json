@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "eslint": "^3.9.0",
+    "eslint-config-kentcdodds": "^10.1.0",
     "react-scripts": "0.7.0"
   },
   "dependencies": {
@@ -12,7 +14,17 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "lint": "eslint src/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "kentcdodds",
+      "kentcdodds/react",
+      "kentcdodds/jest",
+      "kentcdodds/jsx-a11y",
+      "kentcdodds/webpack"
+    ]
   }
 }
