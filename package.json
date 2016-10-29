@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "@kadira/storybook": "^2.21.0",
+    "@kadira/storyshots": "^2.0.1",
     "babel-eslint": "^7.1.0",
+    "cross-env": "^3.1.3",
     "eslint": "^3.9.0",
     "eslint-config-kentcdodds": "^10.1.0",
     "eslint-import-resolver-webpack": "^0.6.0",
@@ -22,8 +25,13 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint src/",
-    "test": "react-scripts test --env=jsdom",
-    "validate": "npm-run-all --parallel test lint build"
+    "test": "npm-run-all --parallel test:*",
+    "test:units": "react-scripts test --env=jsdom",
+    "test:storyshots": "cross-env BABEL_ENV=test storyshots",
+    "watch:test:storyshots": "npm run test:storyshots -- --watch --update-interactive",
+    "validate": "cross-env CI=true npm-run-all --parallel test lint build",
+    "storybook": "start-storybook --dont-track --port 9009 --static-dir public",
+    "build-storybook": "build-storybook --static-dir public --output-dir build/storybook"
   },
   "eslintConfig": {
     "extends": [
