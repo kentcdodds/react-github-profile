@@ -23,15 +23,16 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm-run-all --parallel build:*",
+    "build:app": "react-scripts build",
+    "build:storybook": "build-storybook --static-dir public --output-dir build/storybook",
     "lint": "eslint src/",
     "test": "npm-run-all --parallel test:*",
     "test:units": "react-scripts test --env=jsdom",
     "test:storyshots": "cross-env BABEL_ENV=test storyshots",
     "watch:test:storyshots": "npm run test:storyshots -- --watch --update-interactive",
     "validate": "cross-env CI=true npm-run-all --parallel test lint build",
-    "storybook": "start-storybook --dont-track --port 9009 --static-dir public",
-    "build-storybook": "build-storybook --static-dir public --output-dir build/storybook"
+    "storybook": "start-storybook --dont-track --port 9009 --static-dir public"
   },
   "eslintConfig": {
     "extends": [
