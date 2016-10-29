@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "@kadira/storybook": "^2.21.0",
+    "@kadira/storybook-addons": "^1.6.1",
     "@kadira/storyshots": "^2.0.1",
     "babel-core": "^6.18.0",
     "babel-eslint": "^7.1.0",
