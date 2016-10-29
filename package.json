@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npm-run-all --parallel build:*",
+    "build": "npm-run-all build:*",
     "build:app": "react-scripts build",
     "build:storybook": "cross-env BABEL_ENV=production build-storybook --static-dir public --output-dir build/storybook",
     "lint": "eslint src/",
