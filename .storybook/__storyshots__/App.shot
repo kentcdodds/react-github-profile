@@ -1,5 +1,64 @@
 exports[`default`] = `
-<div>
-  Hello World!
+<div
+  className="container">
+  <div
+    className="row">
+    <div
+      className="col-sm-3">
+      <div>
+        <section>
+          <img
+            alt="User Avatar"
+            src={undefined} />
+          <h2 />
+          <h5 />
+        </section>
+        <section>
+          <span>
+            <h2 />
+            <small>
+              followers
+            </small>
+          </span>
+          <span>
+            <h2 />
+            <small>
+              repositories
+            </small>
+          </span>
+          <span>
+            <h2 />
+            <small>
+              following
+            </small>
+          </span>
+        </section>
+        <section>
+          <h4>
+            Organizations
+          </h4>
+          <div
+            className="__react_component_tooltip place-top type-dark "
+            data-id="tooltip">
+            
+          </div>
+        </section>
+      </div>
+    </div>
+    <div
+      className="col-sm-9">
+      <h3>
+        Repositories
+      </h3>
+      <section>
+        <input
+          onChange={[Function]}
+          placeholder="Filter repositories..."
+          type="text"
+          value="" />
+      </section>
+      <ul />
+    </div>
+  </div>
 </div>
 `;

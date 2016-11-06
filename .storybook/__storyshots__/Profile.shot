@@ -1,0 +1,41 @@
+exports[`example profile`] = `
+<div>
+  <section>
+    <img
+      alt="User Avatar"
+      src={undefined} />
+    <h2 />
+    <h5 />
+  </section>
+  <section>
+    <span>
+      <h2 />
+      <small>
+        followers
+      </small>
+    </span>
+    <span>
+      <h2 />
+      <small>
+        repositories
+      </small>
+    </span>
+    <span>
+      <h2 />
+      <small>
+        following
+      </small>
+    </span>
+  </section>
+  <section>
+    <h4>
+      Organizations
+    </h4>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip">
+      
+    </div>
+  </section>
+</div>
+`;
