@@ -50,8 +50,8 @@
   },
   "jest": {
     "testPathIgnorePatterns": [
-      "node_modules",
-      ".yarn_cache"
+      "/node_modules/",
+      "/.yarn_cache/"
     ]
   }
 }
