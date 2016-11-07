@@ -47,5 +47,11 @@
       "kentcdodds/jsx-a11y",
       "kentcdodds/webpack"
     ]
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "node_modules",
+      ".yarn_cache"
+    ]
   }
 }
