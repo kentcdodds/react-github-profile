@@ -15,10 +15,13 @@
   },
   "dependencies": {
     "axios": "^0.15.2",
+    "history": "^4.4.0",
+    "husky": "^0.11.9",
     "match-sorter": "^1.6.0",
     "moment": "^2.15.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-router": "4.0.0-alpha.5",
     "react-tooltip": "^3.2.1"
   },
   "scripts": {
@@ -26,12 +29,14 @@
     "build": "npm-run-all build:*",
     "build:app": "react-scripts build",
     "build:storybook": "cross-env BABEL_ENV=production build-storybook --static-dir public --output-dir build/storybook",
+    "precommit": "npm run validate -s",
     "lint": "eslint src/",
-    "test": "cross-env CI=true npm-run-all --parallel test:*",
-    "test:units": "react-scripts test --env=jsdom",
+    "test": "npm-run-all --parallel test:*",
+    "test:units": "cross-env CI=true react-scripts test --env=jsdom",
+    "watch:test:units": "react-scripts test --env=jsdom",
     "test:storyshots": "cross-env BABEL_ENV=test storyshots",
     "watch:test:storyshots": "npm run test:storyshots -- --watch --update-interactive",
-    "validate": "cross-env CI=true npm-run-all --parallel test lint build",
+    "validate": "npm-run-all --parallel test lint build",
     "storybook": "start-storybook --dont-track --port 9009 --static-dir public"
   },
   "eslintConfig": {

@@ -4,8 +4,8 @@ import RepoFilter from './components/repo-filter'
 import RepoList from './components/repo-list'
 
 export default class User extends Component {
-  static propTypes = {username: PropTypes.string.isRequired}
-  static defaultProps = {username: 'kentcdodds'}
+  static propTypes = {params: PropTypes.shape({username: PropTypes.string.isRequired})}
+  static defaultProps = {params: {username: 'kentcdodds'}}
   state = {filter: ''}
 
   handleFilterUpdate = filter => {
@@ -13,7 +13,7 @@ export default class User extends Component {
   }
 
   render() {
-    const {username} = this.props
+    const {username} = this.props.params
     const {filter} = this.state
     return (
       <div className="container">
