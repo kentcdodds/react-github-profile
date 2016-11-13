@@ -2,6 +2,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {BrowserRouter, Match} from 'react-router'
+import 'bootstrap/dist/css/bootstrap.css'
 import Home from './screens/home'
 import User from './screens/user'
 

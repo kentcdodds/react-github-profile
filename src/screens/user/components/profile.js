@@ -41,9 +41,6 @@ export default class Profile extends Component {
   }
 }
 
-Profile.propTypes = {
-}
-
 function ProfileStatsSection({user}) {
   return (
     <section>
