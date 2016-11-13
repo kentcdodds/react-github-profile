@@ -1,36 +1,56 @@
 exports[`example profile`] = `
 <div>
-  <section>
+  <section
+    data-css-1iqpm33="*">
     <img
       alt="User Avatar"
+      className="img-rounded img-responsive"
       src={undefined} />
-    <h2 />
-    <h5 />
+    <div
+      className="h2" />
+    <div
+      className="h5"
+      data-css-bd44yg="*" />
   </section>
-  <section>
-    <span>
-      <h2 />
-      <small>
+  <section
+    data-css-17azfim="[* + *]">
+    <span
+      data-css-wfg4nn="*">
+      <div
+        className="h2"
+        data-css-10ki57k="*" />
+      <small
+        data-css-1jbynbn="*">
         followers
       </small>
     </span>
-    <span>
-      <h2 />
-      <small>
+    <span
+      data-css-wfg4nn="*">
+      <div
+        className="h2"
+        data-css-10ki57k="*" />
+      <small
+        data-css-1jbynbn="*">
         repositories
       </small>
     </span>
-    <span>
-      <h2 />
-      <small>
+    <span
+      data-css-wfg4nn="*">
+      <div
+        className="h2"
+        data-css-10ki57k="*" />
+      <small
+        data-css-1jbynbn="*">
         following
       </small>
     </span>
   </section>
-  <section>
-    <h4>
+  <section
+    data-css-1iqpm33="*">
+    <div
+      className="h4">
       Organizations
-    </h4>
+    </div>
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip">

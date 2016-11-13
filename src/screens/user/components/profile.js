@@ -1,6 +1,34 @@
 import React, {Component, PropTypes} from 'react'
-import Tooltip from 'react-tooltip'
+import {style, merge} from 'glamor'
+import ReactTooltip from 'react-tooltip'
 import {getUserData} from '../shared/github-api'
+
+const styles = {
+  login: style({
+    fontWeight: 300,
+    fontSize: 20,
+    color: '#666',
+  }),
+  section: style({
+    borderBottom: '1px solid #eee',
+    padding: '20px 0',
+  }),
+  statsSection: style({
+    textAlign: 'center',
+  }),
+  statsItem: style({
+    display: 'inline-block',
+    width: 80,
+  }),
+  statsValue: style({margin: 0}),
+  statsLabel: style({color: '#888'}),
+  orgImg: style({
+    borderRadius: 3,
+    margin: 5,
+    width: 42,
+    height: 42,
+  }),
+}
 
 export default class Profile extends Component {
   static defaultProps = {getUserData}
@@ -26,13 +54,14 @@ export default class Profile extends Component {
     const {user, orgs} = this.state
     return (
       <div>
-        <section>
+        <section {...styles.section}>
           <img
             src={user.avatar_url}
             alt="User Avatar"
+            className="img-rounded img-responsive"
           />
-          <h2>{user.name}</h2>
-          <h5>{user.login}</h5>
+          <div className="h2">{user.name}</div>
+          <div className="h5" {...styles.login}>{user.login}</div>
         </section>
         <ProfileStatsSection user={user} />
         <OrganizationsSection orgs={orgs} />
@@ -43,7 +72,7 @@ export default class Profile extends Component {
 
 function ProfileStatsSection({user}) {
   return (
-    <section>
+    <section {...merge(styles.statsSection, styles.section)}>
       <ProfileStat value={user.followers} label="followers" />
       <ProfileStat value={user.public_repos} label="repositories" />
       <ProfileStat value={user.following} label="following" />
@@ -61,9 +90,9 @@ ProfileStatsSection.propTypes = {
 
 function ProfileStat({value, label}) {
   return (
-    <span>
-      <h2>{value}</h2>
-      <small>{label}</small>
+    <span {...styles.statsItem}>
+      <div className="h2" {...styles.statsValue}>{value}</div>
+      <small {...styles.statsLabel}>{label}</small>
     </span>
   )
 }
@@ -75,17 +104,18 @@ ProfileStat.propTypes = {
 
 function OrganizationsSection({orgs}) {
   return (
-    <section>
-      <h4>Organizations</h4>
+    <section {...styles.section}>
+      <div className="h4">Organizations</div>
       {orgs.map(org => (
         <img
           key={org.id}
           src={org.avatar_url}
           alt="Organization Avatar"
           data-tip={org.login}
+          {...styles.orgImg}
         />
       ))}
-      <Tooltip effect="solid" />
+      <ReactTooltip />
     </section>
   )
 }
