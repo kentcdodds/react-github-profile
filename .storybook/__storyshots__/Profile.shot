@@ -45,17 +45,6 @@ exports[`example profile`] = `
       </small>
     </span>
   </section>
-  <section
-    data-css-nae480="[{:} + {:}]">
-    <div
-      className="h4">
-      Organizations
-    </div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip">
-      
-    </div>
-  </section>
+  0
 </div>
 `;

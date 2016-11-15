@@ -62,7 +62,7 @@ export default class Profile extends Component {
           <div className="h5" {...styles.login}>{user.login}</div>
         </section>
         <ProfileStatsSection user={user} />
-        <OrganizationsSection orgs={orgs} />
+        {orgs.length && <OrganizationsSection orgs={orgs} />}
       </div>
     )
   }
