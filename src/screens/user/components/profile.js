@@ -1,7 +1,6 @@
-import React, {Component, PropTypes} from 'react'
+import React, {PropTypes} from 'react'
 import {style, merge} from 'glamor'
 import ReactTooltip from 'react-tooltip'
-import {getUserData} from '../shared/github-api'
 import {borderBottom, sectionPadding, colors} from './styles'
 
 const styles = {
@@ -28,44 +27,33 @@ const styles = {
   }),
 }
 
-export default class Profile extends Component {
-  static defaultProps = {getUserData}
-  static propTypes = {
-    username: PropTypes.string.isRequired,
-    getUserData: PropTypes.func,
-  }
-  state = {user: {}, orgs: []}
+export default Profile
 
-  getUser() {
-    const {username} = this.props
-    this.props.getUserData(username)
-      .then(({user, orgs}) => {
-        this.setState({user, orgs})
-      })
-  }
+function Profile({user, orgs}) {
+  return (
+    <div>
+      <section {...styles.section}>
+        <img
+          src={user.avatar_url}
+          alt="User Avatar"
+          className="img-rounded img-responsive"
+        />
+        <div className="h2">{user.name}</div>
+        <div className="h5" {...styles.login}>{user.login}</div>
+      </section>
+      <ProfileStatsSection user={user} />
+      {orgs.length && <OrganizationsSection orgs={orgs} />}
+    </div>
+  )
+}
 
-  componentWillMount() {
-    this.getUser()
-  }
-
-  render() {
-    const {user, orgs} = this.state
-    return (
-      <div>
-        <section {...styles.section}>
-          <img
-            src={user.avatar_url}
-            alt="User Avatar"
-            className="img-rounded img-responsive"
-          />
-          <div className="h2">{user.name}</div>
-          <div className="h5" {...styles.login}>{user.login}</div>
-        </section>
-        <ProfileStatsSection user={user} />
-        {orgs.length && <OrganizationsSection orgs={orgs} />}
-      </div>
-    )
-  }
+Profile.propTypes = {
+  user: PropTypes.shape({
+    avatar_url: PropTypes.string.isRequired, // eslint-disable-line camelcase
+    name: PropTypes.string.isRequired,
+    login: PropTypes.string.isRequired,
+  }).isRequired,
+  orgs: PropTypes.array.isRequired,
 }
 
 function ProfileStatsSection({user}) {
@@ -88,10 +76,10 @@ ProfileStatsSection.propTypes = {
 
 function ProfileStat({value, label}) {
   return (
-    <span {...styles.statsItem}>
+    <div {...styles.statsItem}>
       <div className="h2" {...styles.statsValue}>{value}</div>
       <small {...styles.statsLabel}>{label}</small>
-    </span>
+    </div>
   )
 }
 
@@ -113,7 +101,7 @@ function OrganizationsSection({orgs}) {
           {...styles.orgImg}
         />
       ))}
-      <ReactTooltip />
+      <ReactTooltip effect="solid" />
     </section>
   )
 }

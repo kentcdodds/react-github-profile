@@ -4,20 +4,16 @@ import {storiesOf} from '@kadira/storybook'
 import {getMockRepos} from '../shared/github-api.stub'
 import RepoList from './repo-list'
 
-const getRepos = async () => getMockRepos()
-
 storiesOf('RepoList', module)
   .add('list of repos', () => (
     <RepoList
-      getRepos={getRepos}
+      repos={getMockRepos()}
       filter={''}
-      username={'kentcdodds'}
     />
   ))
   .add('list of repos filtered by `javascript`', () => (
     <RepoList
-      getRepos={getRepos}
+      repos={getMockRepos()}
       filter={'javascript'}
-      username={'kentcdodds'}
     />
   ))

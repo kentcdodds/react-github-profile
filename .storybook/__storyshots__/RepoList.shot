@@ -1,9 +1,367 @@
 exports[`list of repos`] = `
 <ul
-  data-css-79w8f5="*" />
+  data-css-79w8f5="*">
+  <li
+    data-css-1jg5r60="[{:} + {:}]">
+    <div
+      className="pull-right">
+      <strong
+        data-css-1jbynbn="*">
+        JavaScript
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        ☆ 
+        623
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        Ⴤ 
+        20
+      </strong>
+    </div>
+    <div
+      className="h4">
+      <a
+        href="https://github.com/kentcdodds/cross-env">
+        cross-env
+      </a>
+    </div>
+    <p
+      data-css-i8uggl="[{:} + {:}]">
+      Cross platform setting of environment scripts
+    </p>
+    <time
+      data-css-10zzkcd="[{:}]">
+      Updated 
+      a month ago
+    </time>
+  </li>
+  <li
+    data-css-1jg5r60="[{:} + {:}]">
+    <div
+      className="pull-right">
+      <strong
+        data-css-1jbynbn="*" />
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        ☆ 
+        171
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        Ⴤ 
+        14
+      </strong>
+    </div>
+    <div
+      className="h4">
+      <a
+        href="https://github.com/kentcdodds/all-contributors">
+        all-contributors
+      </a>
+    </div>
+    <p
+      data-css-i8uggl="[{:} + {:}]">
+      ✨ Recognize all contributors, not just the ones who push code ✨
+    </p>
+    <time
+      data-css-10zzkcd="[{:}]">
+      Updated 
+      8 months ago
+    </time>
+  </li>
+  <li
+    data-css-1jg5r60="[{:} + {:}]">
+    <div
+      className="pull-right">
+      <strong
+        data-css-1jbynbn="*">
+        JavaScript
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        ☆ 
+        200
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        Ⴤ 
+        17
+      </strong>
+    </div>
+    <div
+      className="h4">
+      <a
+        href="https://github.com/kentcdodds/p-s">
+        p-s
+      </a>
+    </div>
+    <p
+      data-css-i8uggl="[{:} + {:}]">
+      All the benefits of npm scripts without the cost of a bloated package.json and limits of json
+    </p>
+    <time
+      data-css-10zzkcd="[{:}]">
+      Updated 
+      11 days ago
+    </time>
+  </li>
+  <li
+    data-css-1jg5r60="[{:} + {:}]">
+    <div
+      className="pull-right">
+      <strong
+        data-css-1jbynbn="*">
+        JavaScript
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        ☆ 
+        227
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        Ⴤ 
+        8
+      </strong>
+    </div>
+    <div
+      className="h4">
+      <a
+        href="https://github.com/kentcdodds/match-sorter">
+        match-sorter
+      </a>
+    </div>
+    <p
+      data-css-i8uggl="[{:} + {:}]">
+      Simple, expected, and deterministic best-match sorting of an array in JavaScript
+    </p>
+    <time
+      data-css-10zzkcd="[{:}]">
+      Updated 
+      12 days ago
+    </time>
+  </li>
+  <li
+    data-css-1jg5r60="[{:} + {:}]">
+    <div
+      className="pull-right">
+      <strong
+        data-css-1jbynbn="*" />
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        ☆ 
+        103
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        Ⴤ 
+        13
+      </strong>
+    </div>
+    <div
+      className="h4">
+      <a
+        href="https://github.com/kentcdodds/ama">
+        ama
+      </a>
+    </div>
+    <p
+      data-css-i8uggl="[{:} + {:}]">
+      Ask me anything!
+    </p>
+    <time
+      data-css-10zzkcd="[{:}]">
+      Updated 
+      a year ago
+    </time>
+  </li>
+  <li
+    data-css-1jg5r60="[{:} + {:}]">
+    <div
+      className="pull-right">
+      <strong
+        data-css-1jbynbn="*">
+        JavaScript
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        ☆ 
+        81
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        Ⴤ 
+        4
+      </strong>
+    </div>
+    <div
+      className="h4">
+      <a
+        href="https://github.com/kentcdodds/webpack-config-utils">
+        webpack-config-utils
+      </a>
+    </div>
+    <p
+      data-css-i8uggl="[{:} + {:}]">
+      Utilities to help your webpack config be easier to read
+    </p>
+    <time
+      data-css-10zzkcd="[{:}]">
+      Updated 
+      3 months ago
+    </time>
+  </li>
+</ul>
 `;
 
 exports[`list of repos filtered by \`javascript\``] = `
 <ul
-  data-css-79w8f5="*" />
+  data-css-79w8f5="*">
+  <li
+    data-css-1jg5r60="[{:} + {:}]">
+    <div
+      className="pull-right">
+      <strong
+        data-css-1jbynbn="*">
+        JavaScript
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        ☆ 
+        623
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        Ⴤ 
+        20
+      </strong>
+    </div>
+    <div
+      className="h4">
+      <a
+        href="https://github.com/kentcdodds/cross-env">
+        cross-env
+      </a>
+    </div>
+    <p
+      data-css-i8uggl="[{:} + {:}]">
+      Cross platform setting of environment scripts
+    </p>
+    <time
+      data-css-10zzkcd="[{:}]">
+      Updated 
+      a month ago
+    </time>
+  </li>
+  <li
+    data-css-1jg5r60="[{:} + {:}]">
+    <div
+      className="pull-right">
+      <strong
+        data-css-1jbynbn="*">
+        JavaScript
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        ☆ 
+        200
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        Ⴤ 
+        17
+      </strong>
+    </div>
+    <div
+      className="h4">
+      <a
+        href="https://github.com/kentcdodds/p-s">
+        p-s
+      </a>
+    </div>
+    <p
+      data-css-i8uggl="[{:} + {:}]">
+      All the benefits of npm scripts without the cost of a bloated package.json and limits of json
+    </p>
+    <time
+      data-css-10zzkcd="[{:}]">
+      Updated 
+      11 days ago
+    </time>
+  </li>
+  <li
+    data-css-1jg5r60="[{:} + {:}]">
+    <div
+      className="pull-right">
+      <strong
+        data-css-1jbynbn="*">
+        JavaScript
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        ☆ 
+        227
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        Ⴤ 
+        8
+      </strong>
+    </div>
+    <div
+      className="h4">
+      <a
+        href="https://github.com/kentcdodds/match-sorter">
+        match-sorter
+      </a>
+    </div>
+    <p
+      data-css-i8uggl="[{:} + {:}]">
+      Simple, expected, and deterministic best-match sorting of an array in JavaScript
+    </p>
+    <time
+      data-css-10zzkcd="[{:}]">
+      Updated 
+      12 days ago
+    </time>
+  </li>
+  <li
+    data-css-1jg5r60="[{:} + {:}]">
+    <div
+      className="pull-right">
+      <strong
+        data-css-1jbynbn="*">
+        JavaScript
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        ☆ 
+        81
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        Ⴤ 
+        4
+      </strong>
+    </div>
+    <div
+      className="h4">
+      <a
+        href="https://github.com/kentcdodds/webpack-config-utils">
+        webpack-config-utils
+      </a>
+    </div>
+    <p
+      data-css-i8uggl="[{:} + {:}]">
+      Utilities to help your webpack config be easier to read
+    </p>
+    <time
+      data-css-10zzkcd="[{:}]">
+      Updated 
+      3 months ago
+    </time>
+  </li>
+</ul>
 `;

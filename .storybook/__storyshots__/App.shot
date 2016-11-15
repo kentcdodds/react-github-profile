@@ -6,52 +6,9 @@ exports[`default`] = `
     <div
       className="col-sm-3">
       <div>
-        <section
-          data-css-nae480="[{:} + {:}]">
-          <img
-            alt="User Avatar"
-            className="img-rounded img-responsive"
-            src={undefined} />
-          <div
-            className="h2" />
-          <div
-            className="h5"
-            data-css-bd44yg="*" />
-        </section>
-        <section
-          data-css-17azfim="[* + [{:} + {:}]]">
-          <span
-            data-css-wfg4nn="*">
-            <div
-              className="h2"
-              data-css-10ki57k="*" />
-            <small
-              data-css-1jbynbn="*">
-              followers
-            </small>
-          </span>
-          <span
-            data-css-wfg4nn="*">
-            <div
-              className="h2"
-              data-css-10ki57k="*" />
-            <small
-              data-css-1jbynbn="*">
-              repositories
-            </small>
-          </span>
-          <span
-            data-css-wfg4nn="*">
-            <div
-              className="h2"
-              data-css-10ki57k="*" />
-            <small
-              data-css-1jbynbn="*">
-              following
-            </small>
-          </span>
-        </section>
-        0
+        <div>
+          Loading...
+        </div>
       </div>
     </div>
     <div
@@ -68,9 +25,162 @@ exports[`default`] = `
           type="text"
           value="" />
       </section>
-      <ul
-        data-css-79w8f5="*" />
+      <div>
+        <div>
+          Loading repository list...
+        </div>
+      </div>
     </div>
   </div>
 </div>
+`;
+
+exports[`list of repos filtered by \`javascript\``] = `
+<ul
+  data-css-79w8f5="*">
+  <li
+    data-css-1jg5r60="[{:} + {:}]">
+    <div
+      className="pull-right">
+      <strong
+        data-css-1jbynbn="*">
+        JavaScript
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        ☆ 
+        623
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        Ⴤ 
+        20
+      </strong>
+    </div>
+    <div
+      className="h4">
+      <a
+        href="https://github.com/kentcdodds/cross-env">
+        cross-env
+      </a>
+    </div>
+    <p
+      data-css-i8uggl="[{:} + {:}]">
+      Cross platform setting of environment scripts
+    </p>
+    <time
+      data-css-10zzkcd="[{:}]">
+      Updated 
+      a month ago
+    </time>
+  </li>
+  <li
+    data-css-1jg5r60="[{:} + {:}]">
+    <div
+      className="pull-right">
+      <strong
+        data-css-1jbynbn="*">
+        JavaScript
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        ☆ 
+        200
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        Ⴤ 
+        17
+      </strong>
+    </div>
+    <div
+      className="h4">
+      <a
+        href="https://github.com/kentcdodds/p-s">
+        p-s
+      </a>
+    </div>
+    <p
+      data-css-i8uggl="[{:} + {:}]">
+      All the benefits of npm scripts without the cost of a bloated package.json and limits of json
+    </p>
+    <time
+      data-css-10zzkcd="[{:}]">
+      Updated 
+      11 days ago
+    </time>
+  </li>
+  <li
+    data-css-1jg5r60="[{:} + {:}]">
+    <div
+      className="pull-right">
+      <strong
+        data-css-1jbynbn="*">
+        JavaScript
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        ☆ 
+        227
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        Ⴤ 
+        8
+      </strong>
+    </div>
+    <div
+      className="h4">
+      <a
+        href="https://github.com/kentcdodds/match-sorter">
+        match-sorter
+      </a>
+    </div>
+    <p
+      data-css-i8uggl="[{:} + {:}]">
+      Simple, expected, and deterministic best-match sorting of an array in JavaScript
+    </p>
+    <time
+      data-css-10zzkcd="[{:}]">
+      Updated 
+      12 days ago
+    </time>
+  </li>
+  <li
+    data-css-1jg5r60="[{:} + {:}]">
+    <div
+      className="pull-right">
+      <strong
+        data-css-1jbynbn="*">
+        JavaScript
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        ☆ 
+        81
+      </strong>
+      <strong
+        data-css-1vgechr="[{:} + {:}]">
+        Ⴤ 
+        4
+      </strong>
+    </div>
+    <div
+      className="h4">
+      <a
+        href="https://github.com/kentcdodds/webpack-config-utils">
+        webpack-config-utils
+      </a>
+    </div>
+    <p
+      data-css-i8uggl="[{:} + {:}]">
+      Utilities to help your webpack config be easier to read
+    </p>
+    <time
+      data-css-10zzkcd="[{:}]">
+      Updated 
+      3 months ago
+    </time>
+  </li>
+</ul>
 `;

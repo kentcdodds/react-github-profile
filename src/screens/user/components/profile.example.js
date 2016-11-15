@@ -6,13 +6,7 @@ import Profile from './profile'
 storiesOf('Profile', module)
   .add('example profile', () => (
     <Profile
-      getUserData={getUserData}
-      username={'kentcdodds'}
+      user={getMockUser()}
+      orgs={getMockOrgs()}
     />
   ))
-
-function getUserData() {
-  const user = getMockUser()
-  const orgs = getMockOrgs()
-  return Promise.resolve({user, orgs})
-}
