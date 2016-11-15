@@ -1,7 +1,17 @@
 import React, {Component, PropTypes} from 'react'
+import {style} from 'glamor'
 import matchSorter from 'match-sorter'
 import {getRepos} from '../shared/github-api'
 import RepoListItem from './repo-list-item'
+
+const styles = {
+  list: style({
+    paddingLeft: 0,
+    listStyle: 'none',
+    marginTop: 0,
+    marginBottom: 10,
+  }),
+}
 
 export default class RepoList extends Component {
   static propTypes = {
@@ -30,7 +40,7 @@ export default class RepoList extends Component {
       keys: ['name', 'language', 'description'],
     })
     return (
-      <ul>
+      <ul {...styles.list}>
         {matchingRepos.map(repo => (
           <RepoListItem key={repo.id} repo={repo} />
         ))}

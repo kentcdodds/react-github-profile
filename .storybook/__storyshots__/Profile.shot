@@ -1,7 +1,7 @@
 exports[`example profile`] = `
 <div>
   <section
-    data-css-1iqpm33="*">
+    data-css-nae480="[{:} + {:}]">
     <img
       alt="User Avatar"
       className="img-rounded img-responsive"
@@ -13,7 +13,7 @@ exports[`example profile`] = `
       data-css-bd44yg="*" />
   </section>
   <section
-    data-css-17azfim="[* + *]">
+    data-css-17azfim="[* + [{:} + {:}]]">
     <span
       data-css-wfg4nn="*">
       <div
@@ -46,7 +46,7 @@ exports[`example profile`] = `
     </span>
   </section>
   <section
-    data-css-1iqpm33="*">
+    data-css-nae480="[{:} + {:}]">
     <div
       className="h4">
       Organizations

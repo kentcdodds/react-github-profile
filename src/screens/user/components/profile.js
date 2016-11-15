@@ -2,17 +2,15 @@ import React, {Component, PropTypes} from 'react'
 import {style, merge} from 'glamor'
 import ReactTooltip from 'react-tooltip'
 import {getUserData} from '../shared/github-api'
+import {borderBottom, sectionPadding, colors} from './styles'
 
 const styles = {
   login: style({
     fontWeight: 300,
     fontSize: 20,
-    color: '#666',
+    color: colors.faded,
   }),
-  section: style({
-    borderBottom: '1px solid #eee',
-    padding: '20px 0',
-  }),
+  section: merge(borderBottom, sectionPadding),
   statsSection: style({
     textAlign: 'center',
   }),

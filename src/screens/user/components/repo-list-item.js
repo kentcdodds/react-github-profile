@@ -1,21 +1,33 @@
 /* eslint camelcase:0 */ // blame github
 import React, {PropTypes} from 'react'
 import moment from 'moment'
+import {style, merge} from 'glamor'
+import {borderBottom, colors} from './styles'
+
+const fadedExtra = {color: colors.fadedExtra}
+
+const styles = {
+  item: merge(borderBottom, {padding: '25px 0'}),
+  desc: merge({margin: '0 0 10px'}, fadedExtra),
+  time: merge(fadedExtra),
+  stats: merge({marginLeft: 10}, fadedExtra),
+}
+
 
 export default RepoListItem
 
 function RepoListItem({repo}) {
   const timeUpdated = moment(repo.pushed_at).fromNow()
   return (
-    <li className="border-bottom">
+    <li {...styles.item}>
       <div className="pull-right">
-        <strong>{repo.language}</strong>
-        <strong>&#9734; {repo.stargazers_count}</strong>
-        <strong>&#4292; {repo.forks_count}</strong>
+        <strong {...style(fadedExtra)}>{repo.language}</strong>
+        <strong {...styles.stats}>&#9734; {repo.stargazers_count}</strong>
+        <strong {...styles.stats}>&#4292; {repo.forks_count}</strong>
       </div>
-      <h4><a href={repo.html_url}>{repo.name}</a></h4>
-      <p>{repo.description}</p>
-      <time>Updated {timeUpdated}</time>
+      <div className="h4"><a href={repo.html_url}>{repo.name}</a></div>
+      <p {...styles.desc}>{repo.description}</p>
+      <time {...styles.time}>Updated {timeUpdated}</time>
     </li>
   )
 }

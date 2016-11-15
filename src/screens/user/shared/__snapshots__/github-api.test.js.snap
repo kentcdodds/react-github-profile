@@ -1,1 +1,1 @@
-exports[`test getRepos makes a get request to the github repos API and resolves to the response.data 1`] = `"https://api.github.com/users/chuck_norris/repos?per_page=250"`;
+exports[`test getRepos makes a get request to the github repos API and resolves to the response.data 1`] = `"https://api.github.com/users/chuck_norris/repos?per_page=100&sort=pushed"`;

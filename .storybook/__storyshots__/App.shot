@@ -7,7 +7,7 @@ exports[`default`] = `
       className="col-sm-3">
       <div>
         <section
-          data-css-1iqpm33="*">
+          data-css-nae480="[{:} + {:}]">
           <img
             alt="User Avatar"
             className="img-rounded img-responsive"
@@ -19,7 +19,7 @@ exports[`default`] = `
             data-css-bd44yg="*" />
         </section>
         <section
-          data-css-17azfim="[* + *]">
+          data-css-17azfim="[* + [{:} + {:}]]">
           <span
             data-css-wfg4nn="*">
             <div
@@ -52,7 +52,7 @@ exports[`default`] = `
           </span>
         </section>
         <section
-          data-css-1iqpm33="*">
+          data-css-nae480="[{:} + {:}]">
           <div
             className="h4">
             Organizations
@@ -70,14 +70,17 @@ exports[`default`] = `
       <h3>
         Repositories
       </h3>
-      <section>
+      <section
+        data-css-nae480="[{:} + {:}]">
         <input
+          className="form-control"
           onChange={[Function]}
           placeholder="Filter repositories..."
           type="text"
           value="" />
       </section>
-      <ul />
+      <ul
+        data-css-79w8f5="*" />
     </div>
   </div>
 </div>

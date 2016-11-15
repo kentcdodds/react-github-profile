@@ -1,3 +1,9 @@
-exports[`list of repos`] = `<ul />`;
+exports[`list of repos`] = `
+<ul
+  data-css-79w8f5="*" />
+`;
 
-exports[`list of repos filtered by \`javascript\``] = `<ul />`;
+exports[`list of repos filtered by \`javascript\``] = `
+<ul
+  data-css-79w8f5="*" />
+`;
