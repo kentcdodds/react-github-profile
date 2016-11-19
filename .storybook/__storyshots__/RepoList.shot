@@ -34,7 +34,7 @@ exports[`list of repos`] = `
     <time
       data-css-10zzkcd="[{:}]">
       Updated 
-      a month ago
+      15 days ago
     </time>
   </li>
   <li
@@ -68,7 +68,7 @@ exports[`list of repos`] = `
     <time
       data-css-10zzkcd="[{:}]">
       Updated 
-      8 months ago
+      2 months ago
     </time>
   </li>
   <li
@@ -104,7 +104,7 @@ exports[`list of repos`] = `
     <time
       data-css-10zzkcd="[{:}]">
       Updated 
-      11 days ago
+      2 days ago
     </time>
   </li>
   <li
@@ -140,7 +140,7 @@ exports[`list of repos`] = `
     <time
       data-css-10zzkcd="[{:}]">
       Updated 
-      12 days ago
+      3 minutes ago
     </time>
   </li>
   <li
@@ -210,7 +210,7 @@ exports[`list of repos`] = `
     <time
       data-css-10zzkcd="[{:}]">
       Updated 
-      3 months ago
+      6 months ago
     </time>
   </li>
 </ul>
@@ -252,7 +252,7 @@ exports[`list of repos filtered by \`javascript\``] = `
     <time
       data-css-10zzkcd="[{:}]">
       Updated 
-      a month ago
+      15 days ago
     </time>
   </li>
   <li
@@ -288,7 +288,7 @@ exports[`list of repos filtered by \`javascript\``] = `
     <time
       data-css-10zzkcd="[{:}]">
       Updated 
-      11 days ago
+      2 days ago
     </time>
   </li>
   <li
@@ -324,7 +324,7 @@ exports[`list of repos filtered by \`javascript\``] = `
     <time
       data-css-10zzkcd="[{:}]">
       Updated 
-      12 days ago
+      3 minutes ago
     </time>
   </li>
   <li
@@ -360,7 +360,7 @@ exports[`list of repos filtered by \`javascript\``] = `
     <time
       data-css-10zzkcd="[{:}]">
       Updated 
-      3 months ago
+      6 months ago
     </time>
   </li>
 </ul>

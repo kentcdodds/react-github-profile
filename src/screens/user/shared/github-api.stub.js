@@ -1,4 +1,6 @@
 /* eslint camelcase:0 */
+import moment from 'moment'
+
 export {getMockRepos, getMockUser, getMockOrgs}
 
 function getMockRepos() {
@@ -8,7 +10,7 @@ function getMockRepos() {
       name: 'cross-env',
       html_url: 'https://github.com/kentcdodds/cross-env',
       description: 'Cross platform setting of environment scripts',
-      pushed_at: '2016-10-15T07:29:36Z',
+      pushed_at: getTimestampAgo({days: 15, hours: 2, minutes: 40, seconds: 30}),
       stargazers_count: 623,
       language: 'JavaScript',
       forks_count: 20,
@@ -18,7 +20,7 @@ function getMockRepos() {
       name: 'all-contributors',
       html_url: 'https://github.com/kentcdodds/all-contributors',
       description: '✨ Recognize all contributors, not just the ones who push code ✨',
-      pushed_at: '2016-03-30T03:35:22Z',
+      pushed_at: getTimestampAgo({months: 2, days: 1, hours: 13, minutes: 12, seconds: 42}),
       stargazers_count: 171,
       language: null,
       forks_count: 14,
@@ -28,7 +30,7 @@ function getMockRepos() {
       name: 'p-s',
       html_url: 'https://github.com/kentcdodds/p-s',
       description: 'All the benefits of npm scripts without the cost of a bloated package.json and limits of json',
-      pushed_at: '2016-11-04T21:44:10Z',
+      pushed_at: getTimestampAgo({days: 2, hours: 1, minutes: 3, seconds: 12}),
       stargazers_count: 200,
       language: 'JavaScript',
       forks_count: 17,
@@ -38,7 +40,7 @@ function getMockRepos() {
       name: 'match-sorter',
       html_url: 'https://github.com/kentcdodds/match-sorter',
       description: 'Simple, expected, and deterministic best-match sorting of an array in JavaScript',
-      pushed_at: '2016-11-03T17:44:27Z',
+      pushed_at: getTimestampAgo({minutes: 3}),
       stargazers_count: 227,
       language: 'JavaScript',
       forks_count: 8,
@@ -48,7 +50,7 @@ function getMockRepos() {
       name: 'ama',
       html_url: 'https://github.com/kentcdodds/ama',
       description: 'Ask me anything!',
-      pushed_at: '2015-07-23T22:02:43Z',
+      pushed_at: getTimestampAgo({years: 1, months: 3, days: 3}),
       stargazers_count: 103,
       language: null,
       forks_count: 13,
@@ -58,7 +60,7 @@ function getMockRepos() {
       name: 'webpack-config-utils',
       html_url: 'https://github.com/kentcdodds/webpack-config-utils',
       description: 'Utilities to help your webpack config be easier to read',
-      pushed_at: '2016-08-30T05:40:32Z',
+      pushed_at: getTimestampAgo({months: 6, weeks: 2, days: 1, minutes: 5}),
       stargazers_count: 81,
       language: 'JavaScript',
       forks_count: 4,
@@ -171,4 +173,8 @@ function getMockOrgs() {
       avatar_url: 'https://avatars.githubusercontent.com/u/19538647?v=3',
     },
   ]
+}
+
+function getTimestampAgo(obj) {
+  return moment().subtract(obj).format()
 }
