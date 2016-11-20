@@ -2,7 +2,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {BrowserRouter, Match} from 'react-router'
-import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.css' // eslint-disable-line
 import Home from './screens/home'
 import User from './screens/user'
 
@@ -23,5 +23,5 @@ function App() {
 
 ReactDOM.render(
   <App />,
-  document.getElementById('root')
+  document.getElementById('root'),
 )
