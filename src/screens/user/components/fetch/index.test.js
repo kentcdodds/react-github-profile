@@ -1,7 +1,7 @@
 import React from 'react'
 import {mount, render} from 'enzyme'
 import axiosMock from 'axios'
-import Fetch from './fetch'
+import Fetch from '.'
 
 beforeEach(() => {
   axiosMock.get.mockClear()

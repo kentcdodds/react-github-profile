@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 import moment from 'moment'
 import {style, merge} from 'glamor'
 import matchSorter from 'match-sorter'
-import {borderBottom, colors} from './styles'
+import {borderBottom, colors} from '../styles'
 
 const fadedExtra = {color: colors.fadedExtra}
 

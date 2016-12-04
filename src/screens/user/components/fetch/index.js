@@ -1,6 +1,6 @@
 import {Component, PropTypes} from 'react'
 import axios from 'axios'
-import * as utils from './fetch-utils'
+import * as utils from './utils'
 
 export default class Fetch extends Component {
   static propTypes = {

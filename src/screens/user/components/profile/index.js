@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
-import {getUserUrl, getOrgUrl} from '../shared/github-urls'
-import Fetch from './fetch'
+import {getUserUrl, getOrgUrl} from '../../shared/github-urls'
+import Fetch from '../fetch'
 import Profile from './profile'
 
 export default ProfileFetcher

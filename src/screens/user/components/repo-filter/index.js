@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 import {merge} from 'glamor'
-import {borderBottom, sectionPadding} from './styles'
+import {borderBottom, sectionPadding} from '../styles'
 
 export default RepoFilter
 

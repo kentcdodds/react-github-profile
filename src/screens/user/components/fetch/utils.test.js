@@ -1,4 +1,4 @@
-import * as utils from './fetch-utils'
+import * as utils from './utils'
 
 test('arrayify leaves an array alone', () => {
   expect(utils.arrayify([1, 2])).toEqual([1, 2])

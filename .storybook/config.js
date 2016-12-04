@@ -4,8 +4,8 @@ import {configure} from '@kadira/storybook'
 
 function loadStories() {
   require('../src/screens/user/index.example')
-  require('../src/screens/user/components/repo-list.example')
-  require('../src/screens/user/components/profile.example')
+  require('../src/screens/user/components/repo-list/repo-list.example')
+  require('../src/screens/user/components/profile/profile.example')
 }
 
 document.body.addEventListener('keydown', event => {

@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react'
 import {style, merge} from 'glamor'
 import ReactTooltip from 'react-tooltip'
-import {borderBottom, sectionPadding, colors} from './styles'
+import {borderBottom, sectionPadding, colors} from '../styles'
 
 const styles = {
   login: style({

@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
-import {getRepoUrl} from '../shared/github-urls'
-import Fetch from './fetch'
+import {getRepoUrl} from '../../shared/github-urls'
+import Fetch from '../fetch'
 import RepoList from './repo-list'
 
 export default RepoListFetcher

@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react'
-import ProfileFetcher from './components/profile-fetcher'
+import Profile from './components/profile'
 import RepoFilter from './components/repo-filter'
-import RepoListFetcher from './components/repo-list-fetcher'
+import RepoList from './components/repo-list'
 
 export default class User extends Component {
   static propTypes = {params: PropTypes.shape({username: PropTypes.string.isRequired})}
@@ -19,12 +19,12 @@ export default class User extends Component {
       <div className="container">
         <div className="row">
           <div className="col-sm-3">
-            <ProfileFetcher username={username} />
+            <Profile username={username} />
           </div>
           <div className="col-sm-9">
             <h3>Repositories</h3>
             <RepoFilter filter={filter} onUpdate={this.handleFilterUpdate} />
-            <RepoListFetcher filter={filter} username={username} />
+            <RepoList filter={filter} username={username} />
           </div>
         </div>
       </div>
