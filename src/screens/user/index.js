@@ -1,19 +1,24 @@
-import React, {Component, PropTypes} from 'react'
+import PropTypes from 'prop-types'
+import React, {Component} from 'react'
 import Profile from './components/profile'
 import RepoFilter from './components/repo-filter'
 import RepoList from './components/repo-list'
 
 export default class User extends Component {
-  static propTypes = {params: PropTypes.shape({username: PropTypes.string.isRequired})}
-  static defaultProps = {params: {username: 'kentcdodds'}}
+  static propTypes = {
+    match: PropTypes.shape({
+      params: PropTypes.shape({username: PropTypes.string.isRequired}),
+    }),
+  }
+  static defaultProps = {match: {params: {username: 'kentcdodds'}}}
   state = {filter: ''}
 
   handleFilterUpdate = filter => {
-    this.setState({filter}) // eslint-disable-line
+    this.setState({filter})
   }
 
   render() {
-    const {username} = this.props.params
+    const {username} = this.props.match.params
     const {filter} = this.state
     return (
       <div className="container">

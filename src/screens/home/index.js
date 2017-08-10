@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, {Component} from 'react'
 import {style} from 'glamor'
 
@@ -15,23 +16,18 @@ const styles = {
 
 export default class Home extends Component {
   static contextTypes = {
-    router: React.PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired,
   }
   handleSubmit = e => {
-    /* eslint no-invalid-this:0 */
     e.preventDefault()
     const username = this._input.value.trim()
-    this.context.router.transitionTo(`/${username}`)
+    this.context.router.history.push(`/${username}`)
   }
 
   render() {
     return (
       <section className="container home" {...styles.home}>
-        <form
-          className="form-inline"
-          role="form"
-          onSubmit={this.handleSubmit}
-        >
+        <form className="form-inline" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <div className="input-group">
               <input

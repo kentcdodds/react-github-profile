@@ -1,7 +1,7 @@
 import React from 'react'
 import {mount, render} from 'enzyme'
 import axiosMock from 'axios'
-import Fetch from '.'
+import Fetch from '../'
 
 beforeEach(() => {
   axiosMock.get.mockClear()
@@ -38,7 +38,11 @@ test('makes a get request to the given URL and calls the children function with 
 
 test('can handle an array of URLs which will call children with an array of data in the same position', async () => {
   axiosMock.handlers.get = getUrl => Promise.resolve({data: {getUrl}})
-  const url = ['https://example.com/han_solo', 'https://example.com/leia_skywalker', 'https://example.com/ben_solo']
+  const url = [
+    'https://example.com/han_solo',
+    'https://example.com/leia_skywalker',
+    'https://example.com/ben_solo',
+  ]
   const children = jest.fn(() => <span />)
   mountComponent({url, children})
   await nextTick()
@@ -128,7 +132,7 @@ test('does not call setState when unmounted before requests finish', async () =>
   console.error = jest.fn()
   const wrapper = mountComponent()
   wrapper.unmount() // unmount immediately (before the things get a chance to resolve)
-  
+
   await nextTick()
 
   // this try/catch is just to have an friendlier error message
@@ -136,7 +140,10 @@ test('does not call setState when unmounted before requests finish', async () =>
     // if this test fails, console.error will be called with a forceUpdate error
     expect(console.error).toHaveBeenCalledTimes(0)
   } catch (e) {
-    throw new Error(`console.error should not have been called but was called with: ${console.error.mock.calls}`)
+    throw new Error(
+      `console.error should not have been called but was called with: ${console
+        .error.mock.calls}`,
+    )
   } finally {
     console.error = originalError
   }

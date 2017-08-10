@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 import {style, merge} from 'glamor'
 import ReactTooltip from 'react-tooltip'
 import {borderBottom, sectionPadding, colors} from '../styles'
@@ -38,8 +39,12 @@ function Profile({user, orgs}) {
           alt="User Avatar"
           className="img-rounded img-responsive"
         />
-        <div className="h2">{user.name}</div>
-        <div className="h5" {...styles.login}>{user.login}</div>
+        <div className="h2">
+          {user.name}
+        </div>
+        <div className="h5" {...styles.login}>
+          {user.login}
+        </div>
       </section>
       <ProfileStatsSection user={user} />
       {orgs.length && <OrganizationsSection orgs={orgs} />}
@@ -77,8 +82,12 @@ ProfileStatsSection.propTypes = {
 function ProfileStat({value, label}) {
   return (
     <div {...styles.statsItem}>
-      <div className="h2" {...styles.statsValue}>{value}</div>
-      <small {...styles.statsLabel}>{label}</small>
+      <div className="h2" {...styles.statsValue}>
+        {value}
+      </div>
+      <small {...styles.statsLabel}>
+        {label}
+      </small>
     </div>
   )
 }
@@ -92,24 +101,26 @@ function OrganizationsSection({orgs}) {
   return (
     <section {...styles.section}>
       <div className="h4">Organizations</div>
-      {orgs.map(org => (
+      {orgs.map(org =>
         <img
           key={org.id}
           src={org.avatar_url}
           alt="Organization Avatar"
           data-tip={org.login}
           {...styles.orgImg}
-        />
-      ))}
+        />,
+      )}
       <ReactTooltip effect="solid" />
     </section>
   )
 }
 
 OrganizationsSection.propTypes = {
-  orgs: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    avatar_url: PropTypes.string.isRequired, // eslint-disable-line camelcase
-    login: PropTypes.string.isRequired,
-  })),
+  orgs: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      avatar_url: PropTypes.string.isRequired, // eslint-disable-line camelcase
+      login: PropTypes.string.isRequired,
+    }),
+  ),
 }

@@ -1,4 +1,5 @@
-import {Component, PropTypes} from 'react'
+import PropTypes from 'prop-types'
+import {Component} from 'react'
 import axios from 'axios'
 import * as utils from './utils'
 
@@ -32,8 +33,20 @@ export default class Fetch extends Component {
   fetch(urls = this.props.url) {
     const promises = utils.arrayify(urls).map(url => axios.get(url))
     Promise.all(promises)
-      .then(res => this.safeSetState({data: utils.getData(res), error: null, loading: false}))
-      .catch(err => this.safeSetState({error: utils.getError(err), data: null, loading: false}))
+      .then(res =>
+        this.safeSetState({
+          data: utils.getData(res),
+          error: null,
+          loading: false,
+        }),
+      )
+      .catch(err =>
+        this.safeSetState({
+          error: utils.getError(err),
+          data: null,
+          loading: false,
+        }),
+      )
   }
 
   safeSetState(...args) {

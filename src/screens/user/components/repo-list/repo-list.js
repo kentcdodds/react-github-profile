@@ -1,5 +1,7 @@
 /* eslint camelcase:0 */ // blame github
-import React, {PropTypes} from 'react'
+import PropTypes from 'prop-types'
+
+import React from 'react'
 import moment from 'moment'
 import {style, merge} from 'glamor'
 import matchSorter from 'match-sorter'
@@ -28,18 +30,18 @@ function RepoList({repos, filter}) {
   })
   return (
     <ul {...styles.list}>
-      {matchingRepos.map(repo => (
-        <RepoListItem key={repo.id} repo={repo} />
-      ))}
+      {matchingRepos.map(repo => <RepoListItem key={repo.id} repo={repo} />)}
     </ul>
   )
 }
 
 RepoList.propTypes = {
   filter: PropTypes.string.isRequired,
-  repos: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-  })).isRequired,
+  repos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+    }),
+  ).isRequired,
 }
 
 function RepoListItem({repo}) {
@@ -47,13 +49,27 @@ function RepoListItem({repo}) {
   return (
     <li {...styles.item}>
       <div className="pull-right">
-        <strong {...style(fadedExtra)}>{repo.language}</strong>
-        <strong {...styles.stats}>&#9734; {repo.stargazers_count}</strong>
-        <strong {...styles.stats}>&#4292; {repo.forks_count}</strong>
+        <strong {...style(fadedExtra)}>
+          {repo.language}
+        </strong>
+        <strong {...styles.stats}>
+          &#9734; {repo.stargazers_count}
+        </strong>
+        <strong {...styles.stats}>
+          &#4292; {repo.forks_count}
+        </strong>
       </div>
-      <div className="h4"><a href={repo.html_url}>{repo.name}</a></div>
-      <p {...styles.desc}>{repo.description}</p>
-      <time {...styles.time}>Updated {timeUpdated}</time>
+      <div className="h4">
+        <a href={repo.html_url}>
+          {repo.name}
+        </a>
+      </div>
+      <p {...styles.desc}>
+        {repo.description}
+      </p>
+      <time {...styles.time}>
+        Updated {timeUpdated}
+      </time>
     </li>
   )
 }

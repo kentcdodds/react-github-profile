@@ -1,6 +1,6 @@
 import React from 'react'
 import {mount} from 'enzyme'
-import RepoFilter from '.'
+import RepoFilter from '../'
 
 test('when the user changes the input, the onUpdate prop is called with the new text', () => {
   const onUpdate = jest.fn()

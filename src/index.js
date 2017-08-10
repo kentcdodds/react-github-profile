@@ -1,27 +1,19 @@
-/* eslint func-style:0 */
+import 'bootstrap/dist/css/bootstrap.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {BrowserRouter, Match} from 'react-router'
-import 'bootstrap/dist/css/bootstrap.css' // eslint-disable-line
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Home from './screens/home'
 import User from './screens/user'
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <div>
-        <Match
-          pattern="/"
-          exactly
-          component={Home}
-        />
-        <Match pattern="/:username" component={User} />
+        <Route path="/" exact component={Home} />
+        <Route path="/:username" component={User} />
       </div>
-    </BrowserRouter>
+    </Router>
   )
 }
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root'),
-)
+ReactDOM.render(<App />, document.getElementById('root'))
