@@ -6,7 +6,6 @@
     "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
     "glamor": "^2.20.39",
-    "glamorous": "^4.1.0",
     "match-sorter": "^1.8.1",
     "moment": "^2.18.1",
     "prop-types": "^15.5.10",
@@ -18,7 +17,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "storybook": "start-storybook -p 6006 -c .storybook",
+    "build": "npm-run-all --parallel build:*",
+    "build:app": "react-scripts build",
+    "build:storybook": "build-storybook -o build/_",
     "test": "react-scripts test --env=jsdom",
     "precommit": "lint-staged && npm run validate -s",
     "validate": "cross-env CI=true npm-run-all --parallel test build"
@@ -30,8 +32,10 @@
     ]
   },
   "devDependencies": {
+    "@storybook/react": "^3.2.3",
     "cross-env": "^5.0.5",
     "enzyme": "^2.9.1",
+    "glamorous": "^4.1.0",
     "husky": "^0.14.3",
     "lint-staged": "^4.0.3",
     "npm-run-all": "^4.0.2",

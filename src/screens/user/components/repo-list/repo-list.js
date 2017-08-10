@@ -1,21 +1,21 @@
-/* eslint camelcase:0 */ // blame github
-import PropTypes from 'prop-types'
-
 import React from 'react'
+import PropTypes from 'prop-types'
 import moment from 'moment'
 import {style, merge} from 'glamor'
 import matchSorter from 'match-sorter'
+import glamorous from 'glamorous'
 import {borderBottom, colors} from '../styles'
 
 const fadedExtra = {color: colors.fadedExtra}
 
+const List = glamorous.ul({
+  paddingLeft: 0,
+  listStyle: 'none',
+  marginTop: 0,
+  marginBottom: 10,
+})
+
 const styles = {
-  list: style({
-    paddingLeft: 0,
-    listStyle: 'none',
-    marginTop: 0,
-    marginBottom: 10,
-  }),
   item: merge(borderBottom, {padding: '25px 0'}),
   desc: merge({margin: '0 0 10px'}, fadedExtra),
   time: merge(fadedExtra),
@@ -26,12 +26,16 @@ export default RepoList
 
 function RepoList({repos, filter}) {
   const matchingRepos = matchSorter(repos, filter, {
-    keys: ['name', 'language', 'description'],
+    keys: [
+      'name',
+      {maxRanking: matchSorter.rankings.SIMPLE_MATCH, key: 'language'},
+      {maxRanking: matchSorter.rankings.CONTAINS, key: 'description'},
+    ],
   })
   return (
-    <ul {...styles.list}>
+    <List>
       {matchingRepos.map(repo => <RepoListItem key={repo.id} repo={repo} />)}
-    </ul>
+    </List>
   )
 }
 

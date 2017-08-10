@@ -1,16 +1,19 @@
 import PropTypes from 'prop-types'
 import React, {Component} from 'react'
 import {style} from 'glamor'
+import glamorous, {Section} from 'glamorous'
+
+const SubmitButton = glamorous
+  .button(
+    {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+    },
+    'btn btn-primary',
+  )
+  .withProps({type: 'submit', children: 'Go'})
 
 const styles = {
-  home: style({
-    paddingTop: 200,
-    textAlign: 'center',
-  }),
-  button: style({
-    borderTopLeftRadius: 0,
-    borderBottomLeftRadius: 0,
-  }),
   input: style({minWidth: 190}),
 }
 
@@ -26,7 +29,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <section className="container home" {...styles.home}>
+      <Section paddingTop={200} textAlign="center">
         <form className="form-inline" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <div className="input-group">
@@ -39,18 +42,12 @@ export default class Home extends Component {
                 {...styles.input}
               />
               <span className="input-group-btn">
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  {...styles.button}
-                >
-                  Go
-                </button>
+                <SubmitButton />
               </span>
             </div>
           </div>
         </form>
-      </section>
+      </Section>
     )
   }
 }
