@@ -8,9 +8,8 @@ export default class User extends Component {
   static propTypes = {
     match: PropTypes.shape({
       params: PropTypes.shape({username: PropTypes.string.isRequired}),
-    }),
+    }).isRequired,
   }
-  static defaultProps = {match: {params: {username: 'kentcdodds'}}}
   state = {filter: ''}
 
   handleFilterUpdate = filter => {

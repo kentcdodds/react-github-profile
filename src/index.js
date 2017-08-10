@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import ThemeProvider from './theme-provider'
+import ThemeProvider from './shared/theme-provider'
 import Home from './screens/home'
 import User from './screens/user'
 

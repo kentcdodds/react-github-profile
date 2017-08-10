@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import Section from '../section'
+import {Section} from '../../../../shared/pattern'
 
 export default RepoFilter
 

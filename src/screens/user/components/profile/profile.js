@@ -2,27 +2,42 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import glamorous, {Div} from 'glamorous'
 import ReactTooltip from 'react-tooltip'
-import Section from '../section'
+import {Section, H5, H2, H4} from '../../../../shared/pattern'
 
 const StatsSection = glamorous(Section)({textAlign: 'center'})
-const StatsValue = glamorous.div('h2', {margin: 0})
+
+const StatsValue = glamorous(H2)({margin: 0}).withComponent('div')
+
 const StatsLabel = glamorous.small(({theme}) => ({
   color: theme.colors.fadedExtra,
 }))
-const OrgImg = glamorous.img({
-  borderRadius: 3,
-  margin: 5,
-  width: 42,
-  height: 42,
-})
-const Login = glamorous.div(
-  'h5',
+
+const OrgImg = glamorous
+  .img({
+    borderRadius: 3,
+    margin: 5,
+    width: 42,
+    height: 42,
+  })
+  .withProps({alt: 'Organization Avatar'})
+
+const Login = glamorous(H5)(
   {
     fontWeight: 300,
     fontSize: 20,
   },
   ({theme}) => ({colors: theme.colors.faded}),
+).withComponent('div')
+
+const UserAvatar = glamorous('img', {withProps: {alt: 'User Avatar'}})(
+  'img-rounded img-responsive',
 )
+
+const UserName = glamorous(H2)().withComponent('div')
+
+const OrgSectionTitle = glamorous(H4)()
+  .withComponent('div')
+  .withProps({children: 'Organizations'})
 
 export default Profile
 
@@ -30,14 +45,10 @@ function Profile({user, orgs}) {
   return (
     <div>
       <Section>
-        <img
-          src={user.avatar_url}
-          alt="User Avatar"
-          className="img-rounded img-responsive"
-        />
-        <div className="h2">
+        <UserAvatar src={user.avatar_url} />
+        <UserName>
           {user.name}
-        </div>
+        </UserName>
         <Login>
           {user.login}
         </Login>
@@ -96,14 +107,9 @@ ProfileStat.propTypes = {
 function OrganizationsSection({orgs}) {
   return (
     <Section>
-      <div className="h4">Organizations</div>
+      <OrgSectionTitle />
       {orgs.map(org =>
-        <OrgImg
-          key={org.id}
-          src={org.avatar_url}
-          alt="Organization Avatar"
-          data-tip={org.login}
-        />,
+        <OrgImg key={org.id} src={org.avatar_url} data-tip={org.login} />,
       )}
       <ReactTooltip effect="solid" />
     </Section>

@@ -21,7 +21,8 @@
     "build": "npm-run-all --parallel build:*",
     "build:app": "react-scripts build",
     "build:storybook": "build-storybook -o build/_",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom --coverage",
+    "test:watch": "react-scripts test --env=jsdom",
     "precommit": "lint-staged && npm run validate -s",
     "validate": "cross-env CI=true npm-run-all --parallel test build"
   },

@@ -1,7 +1,7 @@
 import React from 'react'
 import {storiesOf} from '@storybook/react'
+import ThemeProvider from '../../../../shared/theme-provider'
 import {getMockUser, getMockOrgs} from '../../shared/github-api.stub'
-import ThemeProvider from '../../../../theme-provider'
 import Profile from './profile'
 
 storiesOf('Profile', module).add('example profile', () =>
