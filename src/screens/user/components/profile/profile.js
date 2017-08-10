@@ -1,39 +1,35 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import {style, merge} from 'glamor'
+import glamorous, {Div} from 'glamorous'
 import ReactTooltip from 'react-tooltip'
-import {borderBottom, sectionPadding, colors} from '../styles'
+import Section from '../section'
 
-const styles = {
-  login: style({
+const StatsSection = glamorous(Section)({textAlign: 'center'})
+const StatsValue = glamorous.div('h2', {margin: 0})
+const StatsLabel = glamorous.small(({theme}) => ({
+  color: theme.colors.fadedExtra,
+}))
+const OrgImg = glamorous.img({
+  borderRadius: 3,
+  margin: 5,
+  width: 42,
+  height: 42,
+})
+const Login = glamorous.div(
+  'h5',
+  {
     fontWeight: 300,
     fontSize: 20,
-    color: colors.faded,
-  }),
-  section: merge(borderBottom, sectionPadding),
-  statsSection: style({
-    textAlign: 'center',
-  }),
-  statsItem: style({
-    display: 'inline-block',
-    width: 80,
-  }),
-  statsValue: style({margin: 0}),
-  statsLabel: style({color: '#888'}),
-  orgImg: style({
-    borderRadius: 3,
-    margin: 5,
-    width: 42,
-    height: 42,
-  }),
-}
+  },
+  ({theme}) => ({colors: theme.colors.faded}),
+)
 
 export default Profile
 
 function Profile({user, orgs}) {
   return (
     <div>
-      <section {...styles.section}>
+      <Section>
         <img
           src={user.avatar_url}
           alt="User Avatar"
@@ -42,10 +38,10 @@ function Profile({user, orgs}) {
         <div className="h2">
           {user.name}
         </div>
-        <div className="h5" {...styles.login}>
+        <Login>
           {user.login}
-        </div>
-      </section>
+        </Login>
+      </Section>
       <ProfileStatsSection user={user} />
       {orgs.length && <OrganizationsSection orgs={orgs} />}
     </div>
@@ -63,11 +59,11 @@ Profile.propTypes = {
 
 function ProfileStatsSection({user}) {
   return (
-    <section {...merge(styles.statsSection, styles.section)}>
+    <StatsSection>
       <ProfileStat value={user.followers} label="followers" />
       <ProfileStat value={user.public_repos} label="repositories" />
       <ProfileStat value={user.following} label="following" />
-    </section>
+    </StatsSection>
   )
 }
 
@@ -81,14 +77,14 @@ ProfileStatsSection.propTypes = {
 
 function ProfileStat({value, label}) {
   return (
-    <div {...styles.statsItem}>
-      <div className="h2" {...styles.statsValue}>
+    <Div display="inline-block" width={80}>
+      <StatsValue>
         {value}
-      </div>
-      <small {...styles.statsLabel}>
+      </StatsValue>
+      <StatsLabel>
         {label}
-      </small>
-    </div>
+      </StatsLabel>
+    </Div>
   )
 }
 
@@ -99,19 +95,18 @@ ProfileStat.propTypes = {
 
 function OrganizationsSection({orgs}) {
   return (
-    <section {...styles.section}>
+    <Section>
       <div className="h4">Organizations</div>
       {orgs.map(org =>
-        <img
+        <OrgImg
           key={org.id}
           src={org.avatar_url}
           alt="Organization Avatar"
           data-tip={org.login}
-          {...styles.orgImg}
         />,
       )}
       <ReactTooltip effect="solid" />
-    </section>
+    </Section>
   )
 }
 

@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import {merge} from 'glamor'
-import {borderBottom, sectionPadding} from '../styles'
+import Section from '../section'
 
 export default RepoFilter
 
 function RepoFilter({filter, onUpdate}) {
   return (
-    <section {...merge(borderBottom, sectionPadding)}>
+    <Section>
       <input
         type="text"
         value={filter}
@@ -15,7 +14,7 @@ function RepoFilter({filter, onUpdate}) {
         placeholder="Filter repositories..."
         onChange={({target: {value}}) => onUpdate(value)}
       />
-    </section>
+    </Section>
   )
 }
 

@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import React, {Component} from 'react'
-import {style} from 'glamor'
-import glamorous, {Section} from 'glamorous'
+import glamorous, {Section, Input} from 'glamorous'
 
 const SubmitButton = glamorous
   .button(
@@ -12,10 +11,6 @@ const SubmitButton = glamorous
     'btn btn-primary',
   )
   .withProps({type: 'submit', children: 'Go'})
-
-const styles = {
-  input: style({minWidth: 190}),
-}
 
 export default class Home extends Component {
   static contextTypes = {
@@ -33,13 +28,13 @@ export default class Home extends Component {
         <form className="form-inline" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <div className="input-group">
-              <input
+              <Input
                 type="text"
                 placeholder="Enter a GitHub username"
                 className="form-control"
                 autoFocus
-                ref={ref => (this._input = ref)}
-                {...styles.input}
+                minWidth={190}
+                innerRef={ref => (this._input = ref)}
               />
               <span className="input-group-btn">
                 <SubmitButton />
