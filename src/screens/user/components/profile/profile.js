@@ -2,42 +2,29 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import glamorous, {Div} from 'glamorous'
 import ReactTooltip from 'react-tooltip'
-import {Section, H5, H2, H4} from '../../../../shared/pattern'
+import {Section, Text, Image} from '../../../../shared/pattern'
 
 const StatsSection = glamorous(Section)({textAlign: 'center'})
 
-const StatsValue = glamorous(H2)({margin: 0}).withComponent('div')
+const StatsValue = glamorous(Text, {withProps: {heading: true}})({
+  margin: 0,
+})
 
-const StatsLabel = glamorous.small(({theme}) => ({
-  color: theme.colors.fadedExtra,
-}))
+const StatsLabel = glamorous(Text, {
+  withProps: {fadedExtra: true},
+})().withComponent('small')
 
-const OrgImg = glamorous
-  .img({
-    borderRadius: 3,
-    margin: 5,
-    width: 42,
-    height: 42,
-  })
-  .withProps({alt: 'Organization Avatar'})
+const OrgImg = glamorous(Image)({
+  borderRadius: 3,
+  margin: 5,
+  width: 42,
+  height: 42,
+}).withProps({alt: 'Organization Avatar'})
 
-const Login = glamorous(H5)(
-  {
-    fontWeight: 300,
-    fontSize: 20,
-  },
-  ({theme}) => ({colors: theme.colors.faded}),
-).withComponent('div')
-
-const UserAvatar = glamorous('img', {withProps: {alt: 'User Avatar'}})(
-  'img-rounded img-responsive',
-)
-
-const UserName = glamorous(H2)().withComponent('div')
-
-const OrgSectionTitle = glamorous(H4)()
-  .withComponent('div')
-  .withProps({children: 'Organizations'})
+const Login = glamorous(Text, {withProps: {standard: true, faded: true}})({
+  fontWeight: 300,
+  fontSize: 20,
+})
 
 export default Profile
 
@@ -45,10 +32,10 @@ function Profile({user, orgs}) {
   return (
     <div>
       <Section>
-        <UserAvatar src={user.avatar_url} />
-        <UserName>
+        <Image responsive rounded alt="User Avatar" src={user.avatar_url} />
+        <Text heading>
           {user.name}
-        </UserName>
+        </Text>
         <Login>
           {user.login}
         </Login>
@@ -107,7 +94,7 @@ ProfileStat.propTypes = {
 function OrganizationsSection({orgs}) {
   return (
     <Section>
-      <OrgSectionTitle />
+      <Text superstandard>Organizations</Text>
       {orgs.map(org =>
         <OrgImg key={org.id} src={org.avatar_url} data-tip={org.login} />,
       )}

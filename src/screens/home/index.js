@@ -1,16 +1,18 @@
 import PropTypes from 'prop-types'
 import React, {Component} from 'react'
-import glamorous, {Section, Input} from 'glamorous'
+import glamorous, {Form, Section} from 'glamorous'
+import {Input, PrimaryButton} from '../../shared/pattern'
 
-const SubmitButton = glamorous
-  .button(
-    {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-    },
-    'btn btn-primary',
-  )
-  .withProps({type: 'submit', children: 'Go'})
+const SubmitButton = glamorous(PrimaryButton)({
+  borderTopLeftRadius: 0,
+  borderBottomLeftRadius: 0,
+}).withProps({type: 'submit', children: 'Go'})
+
+const GroupedInput = glamorous(Input)({
+  borderRight: 'none',
+  borderTopRightRadius: '0',
+  borderBottomRightRadius: '0',
+})
 
 export default class Home extends Component {
   static contextTypes = {
@@ -25,23 +27,22 @@ export default class Home extends Component {
   render() {
     return (
       <Section paddingTop={200} textAlign="center">
-        <form className="form-inline" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <div className="input-group">
-              <Input
-                type="text"
-                placeholder="Enter a GitHub username"
-                className="form-control"
-                autoFocus
-                minWidth={190}
-                innerRef={ref => (this._input = ref)}
-              />
-              <span className="input-group-btn">
-                <SubmitButton />
-              </span>
-            </div>
-          </div>
-        </form>
+        <Form
+          display="flex"
+          justifyContent="center"
+          maxWidth={240}
+          margin="auto"
+          onSubmit={this.handleSubmit}
+        >
+          <GroupedInput
+            type="text"
+            placeholder="Enter a GitHub username"
+            autoFocus
+            minWidth={190}
+            innerRef={ref => (this._input = ref)}
+          />
+          <SubmitButton />
+        </Form>
       </Section>
     )
   }

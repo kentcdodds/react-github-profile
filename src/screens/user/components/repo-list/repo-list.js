@@ -2,9 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import matchSorter from 'match-sorter'
-import glamorous, {Time, Strong} from 'glamorous'
-
-const fadedExtra = ({theme}) => ({color: theme.colors.fadedExtra})
+import {Text, Anchor} from '../../../../shared/pattern'
+import glamorous, {Time, Div} from 'glamorous'
 
 const List = glamorous.ul({
   paddingLeft: 0,
@@ -20,8 +19,12 @@ const Item = glamorous.li(
   ({theme}) => theme.common.borderBottom,
 )
 
-const Description = glamorous.p({margin: '0 0 10px'}, fadedExtra)
-const Stats = glamorous.strong({marginLeft: 10}, fadedExtra)
+const FadedText = Text.withProps({fadedExtra: true})
+const StrongFadedText = FadedText.withComponent('strong')
+const Description = glamorous(FadedText)({
+  margin: '0 0 10px',
+}).withComponent('p')
+const Stats = glamorous(StrongFadedText)({marginLeft: 10})
 
 function RepoList({repos, filter}) {
   const matchingRepos = matchSorter(repos, filter, {
@@ -51,27 +54,31 @@ function RepoListItem({repo}) {
   const timeUpdated = moment(repo.pushed_at).fromNow()
   return (
     <Item>
-      <div className="pull-right">
-        <Strong css={fadedExtra}>
+      <Div float="right">
+        <StrongFadedText>
           {repo.language}
-        </Strong>
+        </StrongFadedText>
         <Stats>
           &#9734; {repo.stargazers_count}
         </Stats>
         <Stats>
           &#4292; {repo.forks_count}
         </Stats>
-      </div>
-      <div className="h4">
-        <a href={repo.html_url}>
-          {repo.name}
-        </a>
+      </Div>
+      <div>
+        <Anchor href={repo.html_url}>
+          <Text superstandard>
+            {repo.name}
+          </Text>
+        </Anchor>
       </div>
       <Description>
         {repo.description}
       </Description>
-      <Time css={fadedExtra}>
-        Updated {timeUpdated}
+      <Time>
+        <Text fadedExtra>
+          Updated {timeUpdated}
+        </Text>
       </Time>
     </Item>
   )
