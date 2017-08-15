@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
 import matchSorter from 'match-sorter'
 import {css} from 'glamor'
 import glamorous, {Time, Div} from 'glamorous'
@@ -17,7 +16,7 @@ const Item = glamorous.li(
   {
     padding: '25px 0',
   },
-  ({theme}) => theme.common.borderBottom,
+  ({theme}) => theme.common.borderBottom
 )
 
 const FadedText = Text.withProps({fadedExtra: true})
@@ -60,12 +59,11 @@ RepoList.propTypes = {
   repos: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
-    }),
+    })
   ).isRequired,
 }
 
 function RepoListItem({repo}) {
-  const timeUpdated = moment(repo.pushed_at).fromNow()
   return (
     <Item>
       <Div float="right">
@@ -91,7 +89,7 @@ function RepoListItem({repo}) {
       </Description>
       <Time>
         <Text fadedExtra>
-          Updated {timeUpdated}
+          Updated {new Date(repo.pushed_at).toLocaleString()}
         </Text>
       </Time>
     </Item>
