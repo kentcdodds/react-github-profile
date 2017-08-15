@@ -2,8 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import matchSorter from 'match-sorter'
-import {Text, Anchor} from '../../../../shared/pattern'
+import {css} from 'glamor'
 import glamorous, {Time, Div} from 'glamorous'
+import {Text, Anchor} from '../../../../shared/pattern'
 
 const List = glamorous.ul({
   paddingLeft: 0,
@@ -25,6 +26,19 @@ const Description = glamorous(FadedText)({
   margin: '0 0 10px',
 }).withComponent('p')
 const Stats = glamorous(StrongFadedText)({marginLeft: 10})
+
+const bounce = css.keyframes({
+  '0%': {transform: 'translateY(0px)'},
+  '25%': {transform: 'translateY(3px)'},
+  '75%': {transform: 'translateY(-3px)'},
+  '100%': {transform: 'translateY(0px)'},
+})
+const RepoName = glamorous(Text, {withProps: {superstandard: true}})({
+  display: 'inline-block',
+  '&:hover': {
+    animation: `1s infinite ${bounce} linear`,
+  },
+})
 
 function RepoList({repos, filter}) {
   const matchingRepos = matchSorter(repos, filter, {
@@ -67,9 +81,9 @@ function RepoListItem({repo}) {
       </Div>
       <div>
         <Anchor href={repo.html_url}>
-          <Text superstandard>
+          <RepoName>
             {repo.name}
-          </Text>
+          </RepoName>
         </Anchor>
       </div>
       <Description>

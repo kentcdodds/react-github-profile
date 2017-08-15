@@ -13,7 +13,6 @@ const heading = {
   fontFamily: 'inherit',
   fontWeight: '500',
   lineHeight: '1.1',
-  color: 'inherit',
 }
 const largerHeading = {
   marginTop: '20px',
