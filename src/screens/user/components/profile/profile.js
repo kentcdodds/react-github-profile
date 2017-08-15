@@ -48,7 +48,7 @@ function Profile({user, orgs}) {
 
 Profile.propTypes = {
   user: PropTypes.shape({
-    avatar_url: PropTypes.string.isRequired, // eslint-disable-line camelcase
+    avatar_url: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     login: PropTypes.string.isRequired,
   }).isRequired,
@@ -68,7 +68,7 @@ function ProfileStatsSection({user}) {
 ProfileStatsSection.propTypes = {
   user: PropTypes.shape({
     followers: PropTypes.number,
-    public_repos: PropTypes.number, // eslint-disable-line camelcase
+    public_repos: PropTypes.number,
     following: PropTypes.number,
   }),
 }
@@ -107,7 +107,7 @@ OrganizationsSection.propTypes = {
   orgs: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      avatar_url: PropTypes.string.isRequired, // eslint-disable-line camelcase
+      avatar_url: PropTypes.string.isRequired,
       login: PropTypes.string.isRequired,
     }),
   ),

@@ -25,27 +25,19 @@ const smallerHeading = {
   marginBottom: '10px',
 }
 
-const textStyles = {
-  faded: ({theme}) => ({color: theme.colors.faded}),
-  fadedExtra: ({theme}) => ({color: theme.colors.fadedExtra}),
-  superheading: [heading, largerHeading, {fontSize: 36}],
-  heading: [heading, largerHeading, {fontSize: 30}],
-  subheading: [heading, largerHeading, {fontSize: 24}],
-  superstandard: [heading, smallerHeading, {fontSize: 18}],
-  standard: [heading, smallerHeading, {fontSize: 14}],
-  substandard: [heading, smallerHeading, {fontSize: 12}],
-}
-
-export const Text = glamorous.span(props => {
-  return Object.keys(props).map(key => {
-    if (props[key]) {
-      return typeof textStyles[key] === 'function'
-        ? textStyles[key](props)
-        : textStyles[key]
-    }
-    return null
-  })
-})
+export const Text = glamorous.span(
+  propStyles({
+    faded: ({theme}) => ({color: theme.colors.faded}),
+    fadedExtra: ({theme}) => ({color: theme.colors.fadedExtra}),
+    superheading: [heading, largerHeading, {fontSize: 36}],
+    heading: [heading, largerHeading, {fontSize: 30}],
+    subheading: [heading, largerHeading, {fontSize: 24}],
+    superstandard: [heading, smallerHeading, {fontSize: 18}],
+    standard: [heading, smallerHeading, {fontSize: 14}],
+    substandard: [heading, smallerHeading, {fontSize: 12}],
+  }),
+)
+Text.displayName = 'Text'
 
 export const Input = glamorous.input({
   display: 'block',
@@ -109,20 +101,16 @@ export const Image = glamorous.img(
     border: '0',
     verticalAlign: 'middle',
   },
-  ({responsive}) =>
-    responsive
-      ? {
-          display: 'block',
-          maxWidth: '100%',
-          height: 'auto',
-        }
-      : null,
-  ({rounded}) =>
-    rounded
-      ? {
-          borderRadius: '6px',
-        }
-      : null,
+  propStyles({
+    responsive: {
+      display: 'block',
+      maxWidth: '100%',
+      height: 'auto',
+    },
+    rounded: {
+      borderRadius: '6px',
+    },
+  }),
 )
 Image.displayName = 'Image'
 
@@ -141,3 +129,28 @@ export const Anchor = glamorous.a({
     outlineOffset: '-2px',
   },
 })
+
+/**
+ * Makes it easier to create a glamorous component which
+ * accepts props to enable/disable certain styles.
+ *
+ * accepts an object where the key is a prop and the value
+ * is the styles that should be applied if that prop is
+ * passed. Returns a function which you pass to a
+ * glamorousComponentFactory.
+ *
+ * @param {Object} styles The prop to styles object
+ * @return {Function} the dynamic styles function
+ */
+function propStyles(styles) {
+  return function dynamicStyles(props) {
+    return Object.keys(props).map(key => {
+      if (props[key]) {
+        return typeof styles[key] === 'function'
+          ? styles[key](props)
+          : styles[key]
+      }
+      return null
+    })
+  }
+}
