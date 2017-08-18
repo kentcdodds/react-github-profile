@@ -41,7 +41,7 @@ function Profile({user, orgs}) {
         </Login>
       </Section>
       <ProfileStatsSection user={user} />
-      {orgs.length && <OrganizationsSection orgs={orgs} />}
+      {!!orgs.length && <OrganizationsSection orgs={orgs} />}
     </div>
   )
 }
