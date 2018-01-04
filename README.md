@@ -2,8 +2,6 @@
 
 An app I'm going to use to teach people about React 👍
 
-<a href="https://app.codesponsor.io/link/PKGFLnhDiFvsUA5P4kAXfiPs/kentcdodds/react-github-profile" rel="nofollow"><img src="https://app.codesponsor.io/embed/PKGFLnhDiFvsUA5P4kAXfiPs/kentcdodds/react-github-profile.svg" style="width: 888px; height: 68px;" alt="Sponsor" /></a>
-
 ## Setup
 
 TODO
