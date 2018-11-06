@@ -1,14 +1,14 @@
-export {arrayify, getData, urlsAreEqual}
+export {arrayify, unwrap, urlsAreEqual}
 
 function arrayify(thing) {
   return Array.isArray(thing) ? thing : [thing]
 }
 
-function getData(responses) {
-  if (responses.length > 1) {
-    return responses.map(r => r.data)
+function unwrap(thing) {
+  if (thing.length > 1) {
+    return thing
   }
-  return responses[0].data
+  return thing[0]
 }
 
 function urlsAreEqual(url1, url2) {

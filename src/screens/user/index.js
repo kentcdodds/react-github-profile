@@ -8,9 +8,7 @@ import RepoList from './components/repo-list'
 
 export default class User extends Component {
   static propTypes = {
-    match: PropTypes.shape({
-      params: PropTypes.shape({username: PropTypes.string.isRequired}),
-    }).isRequired,
+    username: PropTypes.string.isRequired,
   }
   state = {filter: ''}
 
@@ -19,7 +17,7 @@ export default class User extends Component {
   }
 
   render() {
-    const {username} = this.props.match.params
+    const {username} = this.props
     const {filter} = this.state
     return (
       <Container>

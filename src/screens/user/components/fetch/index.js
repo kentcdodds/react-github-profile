@@ -36,7 +36,7 @@ export default class Fetch extends Component {
     Promise.all(promises)
       .then(res =>
         this.safeSetState({
-          data: utils.getData(res),
+          data: utils.unwrap(res),
           error: null,
           loading: false,
         }),

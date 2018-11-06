@@ -6,31 +6,27 @@ import {Section, Text, Image} from '../../../../shared/pattern'
 
 const StatsSection = styled(Section)({textAlign: 'center'})
 
-const StatsValue = styled(Text, {
-  withProps: {heading: true},
-})({
+const StatsValue = styled(Text)({
   margin: 0,
 })
+StatsValue.defaultProps = {heading: true}
 
-const StatsLabel = styled(Text, {
-  withProps: {fadedExtra: true},
-})().withComponent('small')
+const StatsLabel = styled(Text)().withComponent('small')
+StatsLabel.defaultProps = {fadedExtra: true}
 
 const OrgImg = styled(Image)({
   borderRadius: 3,
   margin: 5,
   width: 42,
   height: 42,
-}).withProps({alt: 'Organization Avatar'})
+})
+OrgImg.defaultProps = {alt: 'Organization Avatar'}
 
-const Login = styled(Text, {
-  withProps: {standard: true, faded: true},
-})({
+const Login = styled(Text)({
   fontWeight: 300,
   fontSize: 20,
 })
-
-export default Profile
+Login.defaultProps = {standard: true, faded: true}
 
 function Profile({user, orgs}) {
   return (
@@ -113,3 +109,5 @@ OrganizationsSection.propTypes = {
     }),
   ),
 }
+
+export default Profile

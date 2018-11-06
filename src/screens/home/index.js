@@ -1,12 +1,13 @@
-import PropTypes from 'prop-types'
 import React, {Component} from 'react'
+import {navigate} from '@reach/router'
 import styled, {css} from 'react-emotion'
 import {Input, PrimaryButton} from '../../shared/pattern'
 
 const SubmitButton = styled(PrimaryButton)({
   borderTopLeftRadius: 0,
   borderBottomLeftRadius: 0,
-}).withProps({type: 'submit', children: 'Go'})
+})
+SubmitButton.defaultProps = {type: 'submit', children: 'Go'}
 
 const GroupedInput = styled(Input)({
   borderRight: 'none',
@@ -15,13 +16,10 @@ const GroupedInput = styled(Input)({
 })
 
 export default class Home extends Component {
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-  }
   handleSubmit = e => {
     e.preventDefault()
     const username = this._input.value.trim()
-    this.context.router.history.push(`/${username}`)
+    navigate(`/${username}`)
   }
 
   render() {

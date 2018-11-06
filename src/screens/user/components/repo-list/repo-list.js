@@ -19,7 +19,8 @@ const Item = styled('li')(
   ({theme}) => theme.common.borderBottom,
 )
 
-const FadedText = Text.withProps({fadedExtra: true})
+const FadedText = styled(Text)()
+FadedText.defaultProps = {fadedExtra: true}
 const StrongFadedText = FadedText.withComponent('strong')
 const Description = styled(FadedText)({
   margin: '0 0 10px',
@@ -32,14 +33,13 @@ const bounce = keyframes({
   '75%': {transform: 'translateY(-3px)'},
   '100%': {transform: 'translateY(0px)'},
 })
-const RepoName = styled(Text, {
-  withProps: {superstandard: true},
-})({
+const RepoName = styled(Text)({
   display: 'inline-block',
   '&:hover': {
     animation: `1s infinite ${bounce} linear`,
   },
 })
+RepoName.defaultProps = {superstandard: true}
 
 function RepoList({repos, filter}) {
   const matchingRepos = matchSorter(repos, filter, {

@@ -8,16 +8,16 @@ test('arrayify turns a non-array into an array', () => {
   expect(utils.arrayify({blah: 'bar'})).toEqual([{blah: 'bar'}])
 })
 
-test('getData gets the data property off of the first response when there is only one', () => {
+test('unwrap returns the first item in the array if there is only one item in the array', () => {
   const data = {my: 'data'}
-  const result = utils.getData([{data}])
+  const result = utils.unwrap([data])
   expect(result).toEqual(data)
 })
 
-test('getData maps the responses to their data property when there are more than one', () => {
+test('unwrap returns the array if there are more than one item in the array', () => {
   const data1 = {my: 'data'}
   const data2 = {myOther: 'data'}
-  const result = utils.getData([{data: data1}, {data: data2}])
+  const result = utils.unwrap([data1, data2])
   expect(result).toEqual([data1, data2])
 })
 
