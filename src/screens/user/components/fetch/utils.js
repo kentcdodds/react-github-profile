@@ -1,4 +1,4 @@
-export {arrayify, getData, getError, urlsAreEqual}
+export {arrayify, getData, urlsAreEqual}
 
 function arrayify(thing) {
   return Array.isArray(thing) ? thing : [thing]
@@ -9,12 +9,6 @@ function getData(responses) {
     return responses.map(r => r.data)
   }
   return responses[0].data
-}
-
-function getError({response, config}) {
-  const {url, method} = config
-  const {data} = response
-  return {url, method, data}
 }
 
 function urlsAreEqual(url1, url2) {

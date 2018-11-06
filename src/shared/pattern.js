@@ -1,12 +1,11 @@
-import glamorous from 'glamorous'
+import styled from 'react-emotion/macro'
 
-export const Section = glamorous.div(
+export const Section = styled.div(
   {
     padding: '20px 0',
   },
   ({theme}) => theme.common.borderBottom,
 )
-Section.displayName = 'Section'
 
 const heading = {
   display: 'block',
@@ -24,7 +23,7 @@ const smallerHeading = {
   marginBottom: '10px',
 }
 
-export const Text = glamorous.span(
+export const Text = styled.span(
   propStyles({
     faded: ({theme}) => ({color: theme.colors.faded}),
     fadedExtra: ({theme}) => ({color: theme.colors.fadedExtra}),
@@ -36,9 +35,8 @@ export const Text = glamorous.span(
     substandard: [heading, smallerHeading, {fontSize: 12}],
   }),
 )
-Text.displayName = 'Text'
 
-export const Input = glamorous.input({
+export const Input = styled.input({
   display: 'block',
   width: '100%',
   height: '34px',
@@ -59,9 +57,8 @@ export const Input = glamorous.input({
       'inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6)',
   },
 })
-Input.displayName = 'Input'
 
-export const Button = glamorous.button({
+export const Button = styled.button({
   display: 'inline-block',
   padding: '6px 12px',
   marginBottom: '0',
@@ -78,9 +75,8 @@ export const Button = glamorous.button({
   border: '1px solid transparent',
   borderRadius: '4px',
 })
-Button.displayName = 'Button'
 
-export const PrimaryButton = glamorous(Button)({
+export const PrimaryButton = styled(Button)({
   color: '#fff',
   backgroundColor: '#337ab7',
   borderColor: '#2e6da4',
@@ -93,9 +89,8 @@ export const PrimaryButton = glamorous(Button)({
     borderColor: '#122b40',
   },
 })
-PrimaryButton.displayName = 'PrimaryButton'
 
-export const Image = glamorous.img(
+export const Image = styled.img(
   {
     border: '0',
     verticalAlign: 'middle',
@@ -111,9 +106,8 @@ export const Image = glamorous.img(
     },
   }),
 )
-Image.displayName = 'Image'
 
-export const Anchor = glamorous.a({
+export const Anchor = styled.a({
   color: '#337ab7',
   textDecoration: 'none',
   '&:active,&:hover': {
@@ -130,13 +124,13 @@ export const Anchor = glamorous.a({
 })
 
 /**
- * Makes it easier to create a glamorous component which
+ * Makes it easier to create an emotion component which
  * accepts props to enable/disable certain styles.
  *
  * accepts an object where the key is a prop and the value
  * is the styles that should be applied if that prop is
  * passed. Returns a function which you pass to a
- * glamorousComponentFactory.
+ * emotionComponentFactory.
  *
  * @param {Object} styles The prop to styles object
  * @return {Function} the dynamic styles function

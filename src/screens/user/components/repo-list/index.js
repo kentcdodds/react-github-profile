@@ -10,16 +10,18 @@ function RepoListFetcher(props) {
   const {username} = props
   return (
     <Fetch url={getRepoUrl(username)}>
-      {({data: repos, loading, error}) =>
+      {({data: repos, loading, error}) => (
         <div>
           {loading && <div>Loading repository list...</div>}
-          {error &&
+          {error && (
             <div>
               Error loading repositories for <code>{username}</code>{' '}
               <pre>{JSON.stringify(error, null, 2)}</pre>
-            </div>}
+            </div>
+          )}
           {repos && <RepoList {...props} repos={repos} />}
-        </div>}
+        </div>
+      )}
     </Fetch>
   )
 }

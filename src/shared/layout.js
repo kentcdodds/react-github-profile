@@ -1,4 +1,4 @@
-import glamorous from 'glamorous'
+import styled from 'react-emotion/macro'
 
 const sizes = {
   phone: 768,
@@ -13,7 +13,7 @@ const queries = {
   desktop: `@media (min-width: ${sizes.desktop}px)`,
 }
 
-const Container = glamorous.div({
+const Container = styled.div({
   label: 'container',
   paddingRight: '15px',
   paddingLeft: '15px',
@@ -30,7 +30,7 @@ const Container = glamorous.div({
   },
 })
 
-const Row = glamorous.div({
+const Row = styled.div({
   label: 'row',
   marginRight: '-15px',
   marginLeft: '-15px',
@@ -40,7 +40,7 @@ const Row = glamorous.div({
   },
 })
 
-const Column = glamorous.div(
+const Column = styled.div(
   {
     label: 'column',
     position: 'relative',

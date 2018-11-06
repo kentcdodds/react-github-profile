@@ -1,17 +1,17 @@
 import React from 'react'
-import {mount} from 'enzyme'
+import {render, fireEvent} from 'react-testing-library'
 import ThemeProvider from '../../../../../shared/theme-provider'
 import RepoFilter from '../'
 
 test('when the user changes the input, the onUpdate prop is called with the new text', () => {
   const onUpdate = jest.fn()
-  const wrapper = mount(
+  const {getByLabelText} = render(
     <ThemeProvider>
-      <RepoFilter filter={''} onUpdate={onUpdate} />
+      <RepoFilter filter="" onUpdate={onUpdate} />
     </ThemeProvider>,
   )
   const value = 'a'
-  wrapper.find('input').simulate('change', {target: {value}})
+  fireEvent.change(getByLabelText(/filter/i), {target: {value}})
   expect(onUpdate).toHaveBeenCalledTimes(1)
   expect(onUpdate).toHaveBeenCalledWith(value)
 })

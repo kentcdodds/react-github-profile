@@ -21,16 +21,6 @@ test('getData maps the responses to their data property when there are more than
   expect(result).toEqual([data1, data2])
 })
 
-test('getError gets the response data and the configs method and url', () => {
-  const url = 'https://example.com/put'
-  const method = 'put'
-  const data = {some: 'data'}
-  const response = {data}
-  const config = {method, url}
-  const result = utils.getError({response, config})
-  expect(result).toEqual({data, url, method})
-})
-
 test('urlsAreEqual should be equal if they are both the same string', () => {
   const url1 = 'https://example.com/url'
   const url2 = 'https://example.com/url'

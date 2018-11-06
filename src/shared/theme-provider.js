@@ -1,5 +1,5 @@
 import React from 'react'
-import {ThemeProvider} from 'glamorous'
+import {ThemeProvider} from 'emotion-theming'
 
 const theme = {
   common: {

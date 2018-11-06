@@ -189,5 +189,7 @@ function getMockOrgs() {
 }
 
 function getTimestampAgo(obj) {
-  return moment().subtract(obj).format()
+  return moment()
+    .subtract(obj)
+    .format()
 }

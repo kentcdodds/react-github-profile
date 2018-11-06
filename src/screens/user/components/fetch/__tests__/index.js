@@ -1,17 +1,36 @@
 import React from 'react'
-import {mount, render} from 'enzyme'
-import axiosMock from 'axios'
+import {render, wait} from 'react-testing-library'
 import Fetch from '../'
 
 beforeEach(() => {
-  axiosMock.get.mockClear()
+  jest.spyOn(window, 'fetch')
+  window.fetch.mockImplementation(getUrl =>
+    Promise.resolve({json: () => Promise.resolve({data: {getUrl}})}),
+  )
 })
+
+afterEach(() => {
+  window.fetch.mockRestore()
+})
+
+function renderFetch(props, options) {
+  const children = jest.fn(() => null)
+  const combinedProps = {url: 'http://example.com', children, ...props}
+  const utils = render(<Fetch {...combinedProps} />, options)
+  const rerender = newProps =>
+    renderFetch({...combinedProps, ...newProps}, {container: utils.container})
+  return {
+    ...utils,
+    rerender,
+    ...combinedProps,
+  }
+}
 
 test('renders a call to the given child function', () => {
   const children = jest.fn(() => <span>hey</span>)
-  const wrapper = render(<Fetch {...getProps({children})} />)
+  const {container} = renderFetch({children})
 
-  expect(wrapper.html()).toBe('<span>hey</span>')
+  expect(container.innerHTML).toBe('<span>hey</span>')
   expect(children).toHaveBeenCalledTimes(1)
   expect(children).toHaveBeenCalledWith({
     data: null,
@@ -21,14 +40,12 @@ test('renders a call to the given child function', () => {
 })
 
 test('makes a get request to the given URL and calls the children function with the resulting data for rendering', async () => {
-  axiosMock.handlers.get = getUrl => Promise.resolve({data: {getUrl}})
   const url = 'https://example.com/han_solo'
-  const children = jest.fn(() => <span />)
-  mountComponent({url, children})
-  await nextTick()
+  const {children} = renderFetch({url})
+  await wait()
 
-  expect(axiosMock.get).toHaveBeenCalledTimes(1)
-  expect(axiosMock.get).toHaveBeenCalledWith(url)
+  expect(window.fetch).toHaveBeenCalledTimes(1)
+  expect(window.fetch).toHaveBeenCalledWith(url)
   expect(children).toHaveBeenLastCalledWith({
     data: {getUrl: url},
     error: null,
@@ -37,18 +54,16 @@ test('makes a get request to the given URL and calls the children function with 
 })
 
 test('can handle an array of URLs which will call children with an array of data in the same position', async () => {
-  axiosMock.handlers.get = getUrl => Promise.resolve({data: {getUrl}})
   const url = [
     'https://example.com/han_solo',
     'https://example.com/leia_skywalker',
     'https://example.com/ben_solo',
   ]
-  const children = jest.fn(() => <span />)
-  mountComponent({url, children})
-  await nextTick()
+  const {children} = renderFetch({url})
+  await wait()
 
-  expect(axiosMock.get).toHaveBeenCalledTimes(url.length)
-  url.forEach(u => expect(axiosMock.get).toHaveBeenCalledWith(u))
+  expect(window.fetch).toHaveBeenCalledTimes(url.length)
+  url.forEach(u => expect(window.fetch).toHaveBeenCalledWith(u))
   expect(children).toHaveBeenLastCalledWith({
     data: url.map(u => ({getUrl: u})),
     error: null,
@@ -57,21 +72,18 @@ test('can handle an array of URLs which will call children with an array of data
 })
 
 test('does not make a new fetch if props change but the url is the same', async () => {
-  axiosMock.handlers.get = getUrl => Promise.resolve({data: {getUrl}})
   const otherProp = 'thing1'
   const url = 'https://example.com/han_solo'
-  const children = jest.fn(() => <span />)
-  const wrapper = mountComponent({url, otherProp, children})
-  await nextTick()
+  const {children, rerender} = renderFetch({url, otherProp})
+  await wait()
 
   children.mockClear()
-  axiosMock.get.mockClear()
+  window.fetch.mockClear()
 
-  const otherProp2 = 'thing2'
-  wrapper.setProps({otherProp: otherProp2})
-  await nextTick()
+  rerender({otherProp: 'thing2'})
+  await wait()
 
-  expect(axiosMock.get).toHaveBeenCalledTimes(0)
+  expect(window.fetch).toHaveBeenCalledTimes(0)
   expect(children).toHaveBeenCalledTimes(1)
   expect(children).toHaveBeenCalledWith({
     data: {getUrl: url},
@@ -81,21 +93,19 @@ test('does not make a new fetch if props change but the url is the same', async 
 })
 
 test('makes a new call if the url changes', async () => {
-  axiosMock.handlers.get = getUrl => Promise.resolve({data: {getUrl}})
   const url1 = 'https://example.com/han_solo'
-  const children = jest.fn(() => <span />)
-  const wrapper = mountComponent({url: url1, children})
-  await nextTick()
+  const {children, rerender} = renderFetch({url: url1})
+  await wait()
 
   children.mockClear()
-  axiosMock.get.mockClear()
+  window.fetch.mockClear()
 
   const url2 = 'https://example.com/leia_skywalker'
-  wrapper.setProps({url: url2})
-  await nextTick()
+  rerender({url: url2})
+  await wait()
 
-  expect(axiosMock.get).toHaveBeenCalledTimes(1)
-  expect(axiosMock.get).toHaveBeenCalledWith(url2)
+  expect(window.fetch).toHaveBeenCalledTimes(1)
+  expect(window.fetch).toHaveBeenCalledWith(url2)
   expect(children).toHaveBeenLastCalledWith({
     data: {getUrl: url2},
     error: null,
@@ -104,24 +114,16 @@ test('makes a new call if the url changes', async () => {
 })
 
 test('calls the children with the error if there is an error for a request', async () => {
-  axiosMock.handlers.get = getUrl => {
-    return Promise.reject({
-      config: {method: 'get', url: getUrl},
-      response: {
-        data: {getUrl},
-      },
-    })
-  }
-  const url = 'https://example.com/han_solo'
-  const children = jest.fn(() => <span />)
-  mountComponent({url, children})
-  await nextTick()
+  const fakeError = {error: {fakeError: 'blah'}}
+  window.fetch.mockImplementationOnce(getUrl => Promise.reject(fakeError))
+  const {children, url} = renderFetch()
+  await wait()
 
-  expect(axiosMock.get).toHaveBeenCalledTimes(1)
-  expect(axiosMock.get).toHaveBeenCalledWith(url)
+  expect(window.fetch).toHaveBeenCalledTimes(1)
+  expect(window.fetch).toHaveBeenCalledWith(url)
   expect(children).toHaveBeenLastCalledWith({
     data: null,
-    error: {data: {getUrl: url}, method: 'get', url},
+    error: fakeError,
     loading: false,
   })
 })
@@ -130,10 +132,10 @@ test('does not call setState when unmounted before requests finish', async () =>
   /* eslint no-console:0 */
   const originalError = console.error
   console.error = jest.fn()
-  const wrapper = mountComponent()
-  wrapper.unmount() // unmount immediately (before the things get a chance to resolve)
+  const {unmount} = renderFetch()
+  unmount() // unmount immediately (before the things get a chance to resolve)
 
-  await nextTick()
+  await wait()
 
   // this try/catch is just to have an friendlier error message
   try {
@@ -141,30 +143,11 @@ test('does not call setState when unmounted before requests finish', async () =>
     expect(console.error).toHaveBeenCalledTimes(0)
   } catch (e) {
     throw new Error(
-      `console.error should not have been called but was called with: ${console
-        .error.mock.calls}`,
+      `console.error should not have been called but was called with: ${
+        console.error.mock.calls
+      }`,
     )
   } finally {
     console.error = originalError
   }
 })
-
-function nextTick(time = 0) {
-  return new Promise(resolve => {
-    setTimeout(() => resolve())
-  }, time)
-}
-
-function mountComponent(props) {
-  return mount(<Fetch {...getProps(props)} />)
-}
-
-function getProps(props) {
-  return {
-    url: 'http://example.com/',
-    children() {
-      return <span />
-    },
-    ...props,
-  }
-}

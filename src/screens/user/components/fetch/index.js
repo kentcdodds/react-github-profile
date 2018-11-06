@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import {Component} from 'react'
-import axios from 'axios'
 import * as utils from './utils'
 
 export default class Fetch extends Component {
@@ -31,7 +30,9 @@ export default class Fetch extends Component {
   }
 
   fetch(urls = this.props.url) {
-    const promises = utils.arrayify(urls).map(url => axios.get(url))
+    const promises = utils
+      .arrayify(urls)
+      .map(url => fetch(url).then(r => r.json()))
     Promise.all(promises)
       .then(res =>
         this.safeSetState({
@@ -40,9 +41,9 @@ export default class Fetch extends Component {
           loading: false,
         }),
       )
-      .catch(err =>
+      .catch(error =>
         this.safeSetState({
-          error: utils.getError(err),
+          error,
           data: null,
           loading: false,
         }),

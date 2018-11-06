@@ -9,16 +9,18 @@ export default ProfileFetcher
 function ProfileFetcher({username}) {
   return (
     <Fetch url={[getUserUrl(username), getOrgUrl(username)]}>
-      {({data, loading, error}) =>
+      {({data, loading, error}) => (
         <div>
           {loading && <div>Loading...</div>}
-          {error &&
+          {error && (
             <div>
               Error loading info for <code>{username}</code>{' '}
               <pre>{JSON.stringify(error, null, 2)}</pre>
-            </div>}
+            </div>
+          )}
           {data && <Profile user={data[0]} orgs={data[1]} />}
-        </div>}
+        </div>
+      )}
     </Fetch>
   )
 }

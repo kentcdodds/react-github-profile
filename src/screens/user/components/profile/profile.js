@@ -1,27 +1,31 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import glamorous, {Div} from 'glamorous'
+import styled, {css} from 'react-emotion'
 import ReactTooltip from 'react-tooltip'
 import {Section, Text, Image} from '../../../../shared/pattern'
 
-const StatsSection = glamorous(Section)({textAlign: 'center'})
+const StatsSection = styled(Section)({textAlign: 'center'})
 
-const StatsValue = glamorous(Text, {withProps: {heading: true}})({
+const StatsValue = styled(Text, {
+  withProps: {heading: true},
+})({
   margin: 0,
 })
 
-const StatsLabel = glamorous(Text, {
+const StatsLabel = styled(Text, {
   withProps: {fadedExtra: true},
 })().withComponent('small')
 
-const OrgImg = glamorous(Image)({
+const OrgImg = styled(Image)({
   borderRadius: 3,
   margin: 5,
   width: 42,
   height: 42,
 }).withProps({alt: 'Organization Avatar'})
 
-const Login = glamorous(Text, {withProps: {standard: true, faded: true}})({
+const Login = styled(Text, {
+  withProps: {standard: true, faded: true},
+})({
   fontWeight: 300,
   fontSize: 20,
 })
@@ -33,12 +37,8 @@ function Profile({user, orgs}) {
     <div>
       <Section>
         <Image responsive rounded alt="User Avatar" src={user.avatar_url} />
-        <Text heading>
-          {user.name}
-        </Text>
-        <Login>
-          {user.login}
-        </Login>
+        <Text heading>{user.name}</Text>
+        <Login>{user.login}</Login>
       </Section>
       <ProfileStatsSection user={user} />
       {!!orgs.length && <OrganizationsSection orgs={orgs} />}
@@ -75,14 +75,15 @@ ProfileStatsSection.propTypes = {
 
 function ProfileStat({value, label}) {
   return (
-    <Div display="inline-block" width={80}>
-      <StatsValue>
-        {value}
-      </StatsValue>
-      <StatsLabel>
-        {label}
-      </StatsLabel>
-    </Div>
+    <div
+      className={css({
+        display: 'inline-block',
+        width: 80,
+      })}
+    >
+      <StatsValue>{value}</StatsValue>
+      <StatsLabel>{label}</StatsLabel>
+    </div>
   )
 }
 
@@ -95,9 +96,9 @@ function OrganizationsSection({orgs}) {
   return (
     <Section>
       <Text superstandard>Organizations</Text>
-      {orgs.map(org =>
-        <OrgImg key={org.id} src={org.avatar_url} data-tip={org.login} />,
-      )}
+      {orgs.map(org => (
+        <OrgImg key={org.id} src={org.avatar_url} data-tip={org.login} />
+      ))}
       <ReactTooltip effect="solid" />
     </Section>
   )

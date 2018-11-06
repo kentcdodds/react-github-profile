@@ -9,6 +9,7 @@ function RepoFilter({filter, onUpdate}) {
     <Section>
       <Input
         type="text"
+        aria-label="Filter repositories"
         value={filter}
         placeholder="Filter repositories..."
         onChange={({target: {value}}) => onUpdate(value)}

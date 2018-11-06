@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types'
 import React, {Component} from 'react'
-import glamorous, {Form, Section} from 'glamorous'
+import styled, {css} from 'react-emotion'
 import {Input, PrimaryButton} from '../../shared/pattern'
 
-const SubmitButton = glamorous(PrimaryButton)({
+const SubmitButton = styled(PrimaryButton)({
   borderTopLeftRadius: 0,
   borderBottomLeftRadius: 0,
 }).withProps({type: 'submit', children: 'Go'})
 
-const GroupedInput = glamorous(Input)({
+const GroupedInput = styled(Input)({
   borderRight: 'none',
   borderTopRightRadius: '0',
   borderBottomRightRadius: '0',
@@ -26,13 +26,20 @@ export default class Home extends Component {
 
   render() {
     return (
-      <Section paddingTop={200} textAlign="center">
-        <Form
-          display="flex"
-          justifyContent="center"
-          maxWidth={240}
-          margin="auto"
+      <section
+        className={css({
+          paddingTop: 200,
+          textAlign: 'center',
+        })}
+      >
+        <form
           onSubmit={this.handleSubmit}
+          className={css({
+            display: 'flex',
+            justifyContent: 'center',
+            maxWidth: 240,
+            margin: 'auto',
+          })}
         >
           <GroupedInput
             type="text"
@@ -42,8 +49,8 @@ export default class Home extends Component {
             innerRef={ref => (this._input = ref)}
           />
           <SubmitButton />
-        </Form>
-      </Section>
+        </form>
+      </section>
     )
   }
 }
