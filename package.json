@@ -22,7 +22,9 @@
     "validate": "cross-env CI=true npm-run-all --parallel test build"
   },
   "husky": {
-    "pre-commit": "lint-staged && npm run validate -s"
+    "hooks": {
+      "pre-commit": "lint-staged && npm run validate -s"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -5,7 +5,7 @@ import Fetch from '../'
 beforeEach(() => {
   jest.spyOn(window, 'fetch')
   window.fetch.mockImplementation(getUrl =>
-    Promise.resolve({json: () => Promise.resolve({data: {getUrl}})}),
+    Promise.resolve({json: () => Promise.resolve({getUrl})}),
   )
 })
 
