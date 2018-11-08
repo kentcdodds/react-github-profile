@@ -1,54 +1,55 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {navigate} from '@reach/router'
-import styled, {css} from 'react-emotion/macro'
+import {css} from 'react-emotion/macro'
 import {Input, PrimaryButton} from '../../shared/pattern'
 
-const SubmitButton = styled(PrimaryButton)({
-  borderTopLeftRadius: 0,
-  borderBottomLeftRadius: 0,
-})
-SubmitButton.defaultProps = {type: 'submit', children: 'Go'}
+const handleSubmit = e => {
+  e.preventDefault()
+  const username = e.target.elements.username.value.trim()
+  navigate(`/${username}`)
+}
 
-const GroupedInput = styled(Input)({
-  borderRight: 'none',
-  borderTopRightRadius: '0',
-  borderBottomRightRadius: '0',
-})
-
-export default class Home extends Component {
-  handleSubmit = e => {
-    e.preventDefault()
-    const username = this._input.value.trim()
-    navigate(`/${username}`)
-  }
-
-  render() {
-    return (
-      <section
+function Home() {
+  return (
+    <section
+      className={css({
+        paddingTop: 200,
+        textAlign: 'center',
+      })}
+    >
+      <form
+        onSubmit={handleSubmit}
         className={css({
-          paddingTop: 200,
-          textAlign: 'center',
+          display: 'flex',
+          justifyContent: 'center',
+          maxWidth: 240,
+          margin: 'auto',
         })}
       >
-        <form
-          onSubmit={this.handleSubmit}
+        <Input
+          type="text"
+          name="username"
+          placeholder="Enter a GitHub username"
+          autoFocus
           className={css({
-            display: 'flex',
-            justifyContent: 'center',
-            maxWidth: 240,
-            margin: 'auto',
+            borderRight: 'none',
+            borderTopRightRadius: '0',
+            borderBottomRightRadius: '0',
+            minWidth: 190,
           })}
+        />
+        <PrimaryButton
+          className={css({
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0,
+          })}
+          type="submit"
         >
-          <GroupedInput
-            type="text"
-            placeholder="Enter a GitHub username"
-            autoFocus
-            minWidth={190}
-            innerRef={ref => (this._input = ref)}
-          />
-          <SubmitButton />
-        </form>
-      </section>
-    )
-  }
+          Go
+        </PrimaryButton>
+      </form>
+    </section>
+  )
 }
+
+export default Home
