@@ -5,16 +5,20 @@ import {Router} from '@reach/router'
 import ThemeProvider from './shared/theme-provider'
 import Home from './screens/home'
 import User from './screens/user'
+import GitHubClientContext from './github-client-context'
+import githubClient from './github-client'
 
 function App() {
   return (
     <div>
-      <ThemeProvider>
-        <Router>
-          <Home path="/" />
-          <User path="/:username" />
-        </Router>
-      </ThemeProvider>
+      <GitHubClientContext.Provider value={githubClient}>
+        <ThemeProvider>
+          <Router>
+            <Home path="/" />
+            <User path="/:username" />
+          </Router>
+        </ThemeProvider>
+      </GitHubClientContext.Provider>
     </div>
   )
 }

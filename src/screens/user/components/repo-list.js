@@ -1,30 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled, {keyframes} from 'react-emotion/macro'
 import moment from 'moment'
 import matchSorter from 'match-sorter'
-import styled, {keyframes, css} from 'react-emotion'
-import {Text, Anchor} from '../../../../shared/pattern'
+import {Text, Anchor} from '../../../shared/pattern'
+import UserContext from '../user-context'
 
-const List = styled('ul')({
+const List = styled.ul({
   paddingLeft: 0,
   listStyle: 'none',
   marginTop: 0,
   marginBottom: 10,
 })
 
-const Item = styled('li')(
-  {
-    padding: '25px 0',
-  },
+const Item = styled.li(
+  {padding: '25px 0'},
   ({theme}) => theme.common.borderBottom,
 )
 
 const FadedText = styled(Text)()
 FadedText.defaultProps = {fadedExtra: true}
 const StrongFadedText = FadedText.withComponent('strong')
-const Description = styled(FadedText)({
-  margin: '0 0 10px',
-}).withComponent('p')
+const Description = styled(FadedText)({margin: '0 0 10px'}).withComponent('p')
 const Stats = styled(StrongFadedText)({marginLeft: 10})
 
 const bounce = keyframes({
@@ -62,26 +59,26 @@ RepoList.propTypes = {
   filter: PropTypes.string.isRequired,
   repos: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string.isRequired,
     }),
   ).isRequired,
 }
 
 function RepoListItem({repo}) {
-  const timeUpdated = moment(repo.pushed_at).fromNow()
+  const timeUpdated = moment(repo.pushedAt).fromNow()
   return (
     <Item>
       <div
-        className={css({
+        style={{
           float: 'right',
-        })}
+        }}
       >
         <StrongFadedText>{repo.language}</StrongFadedText>
-        <Stats>&#9734; {repo.stargazers_count}</Stats>
-        <Stats>&#4292; {repo.forks_count}</Stats>
+        <Stats>&#9734; {repo.stargazersCount}</Stats>
+        <Stats>&#4292; {repo.forksCount}</Stats>
       </div>
       <div>
-        <Anchor href={repo.html_url}>
+        <Anchor href={repo.url}>
           <RepoName>{repo.name}</RepoName>
         </Anchor>
       </div>
@@ -95,14 +92,22 @@ function RepoListItem({repo}) {
 
 RepoListItem.propTypes = {
   repo: PropTypes.shape({
-    pushed_at: PropTypes.string,
+    pushedAt: PropTypes.string,
     language: PropTypes.string,
-    stargazers_count: PropTypes.number,
-    forks_count: PropTypes.number,
-    html_url: PropTypes.string,
+    stargazersCount: PropTypes.number,
+    forksCount: PropTypes.number,
+    url: PropTypes.string,
     name: PropTypes.string,
     description: PropTypes.string,
   }).isRequired,
 }
 
-export default RepoList
+function RepoListFetcher(props) {
+  return (
+    <UserContext.Consumer>
+      {userData => <RepoList repos={userData.repositories} {...props} />}
+    </UserContext.Consumer>
+  )
+}
+
+export default RepoListFetcher

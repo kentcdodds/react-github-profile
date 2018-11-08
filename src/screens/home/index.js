@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {navigate} from '@reach/router'
-import styled, {css} from 'react-emotion'
+import styled, {css} from 'react-emotion/macro'
 import {Input, PrimaryButton} from '../../shared/pattern'
 
 const SubmitButton = styled(PrimaryButton)({
