@@ -1,6 +1,6 @@
 import React from 'react'
 import {render as rtlRender, wait} from 'react-testing-library'
-import GitHubClientContext from '../../../../github-client-context'
+import * as GitHubClient from '../../../../github-client'
 import Query from '../query'
 
 const fakeResponse = {fakeData: {}}
@@ -19,9 +19,9 @@ function renderQuery({
 } = {}) {
   const props = {query, variables, children}
   const utils = rtlRender(
-    <GitHubClientContext.Provider value={client}>
+    <GitHubClient.Context.Provider value={client}>
       <Query {...props} />
-    </GitHubClientContext.Provider>,
+    </GitHubClient.Context.Provider>,
     options,
   )
   return {

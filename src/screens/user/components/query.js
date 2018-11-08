@@ -1,14 +1,14 @@
 import {Component} from 'react'
 import PropTypes from 'prop-types'
 import isEqual from 'lodash/isEqual'
-import GitHubClientContext from '../../../github-client-context'
+import * as GitHub from '../../../github-client'
 
 class Query extends Component {
   static propTypes = {
     query: PropTypes.string.isRequired,
     children: PropTypes.func.isRequired,
   }
-  static contextType = GitHubClientContext
+  static contextType = GitHub.Context
 
   state = {loaded: false, fetching: true, data: null, error: null}
 

@@ -6,6 +6,7 @@
     "@reach/router": "^1.2.1",
     "emotion": "^9.2.12",
     "emotion-theming": "^9.2.9",
+    "firebase": "^5.5.7",
     "graphql-request": "^1.8.2",
     "match-sorter": "^2.3.0",
     "moment": "^2.22.2",

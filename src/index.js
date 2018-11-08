@@ -5,22 +5,22 @@ import {Router} from '@reach/router'
 import ThemeProvider from './shared/theme-provider'
 import Home from './screens/home'
 import User from './screens/user'
-import GitHubClientContext from './github-client-context'
-import githubClient from './github-client'
+import * as GitHubContext from './github-client'
 
 function App() {
   return (
     <div>
-      <GitHubClientContext.Provider value={githubClient}>
-        <ThemeProvider>
+      <ThemeProvider>
+        <GitHubContext.Provider>
           <Router>
             <Home path="/" />
             <User path="/:username" />
           </Router>
-        </ThemeProvider>
-      </GitHubClientContext.Provider>
+        </GitHubContext.Provider>
+      </ThemeProvider>
     </div>
   )
+  // <User path="/:username" />
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
