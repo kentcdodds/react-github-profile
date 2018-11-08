@@ -1,6 +1,23 @@
 import React from 'react'
-import {authWithGitHub, gitHubSignOut} from './firebase'
+import netlify from 'netlify-auth-providers'
 import {GraphQLClient} from 'graphql-request'
+
+async function authWithGitHub() {
+  return new Promise((resolve, reject) => {
+    var authenticator = new netlify({
+      site_id: '2b9c1652-1f15-4c58-89f2-290796d9fc68',
+    })
+    authenticator.authenticate(
+      {provider: 'github', scope: 'public_repo,read:org,read:user'},
+      function(err, data) {
+        if (err) {
+          reject(err)
+        }
+        resolve(data)
+      },
+    )
+  })
+}
 
 const GitHubClientContext = React.createContext()
 
@@ -22,15 +39,14 @@ class GitHubClientProvider extends React.Component {
   handleSignoutClick = () => {
     window.localStorage.removeItem('github-token')
     this.setState({client: null, error: null})
-    gitHubSignOut()
   }
   handleLoginClick = async () => {
-    const token = await authWithGitHub().catch(error => {
+    const data = await authWithGitHub().catch(error => {
       console.log('Oh no', error)
       this.setState({error})
     })
-    window.localStorage.setItem('github-token', token)
-    this.setState({client: getClient(token)})
+    window.localStorage.setItem('github-token', data.token)
+    this.setState({client: getClient(data.token)})
   }
   render() {
     const {client, error} = this.state
