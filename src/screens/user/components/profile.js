@@ -61,8 +61,8 @@ function ProfileStat({value, label}) {
       <Text className={css({margin: 0})} heading>
         {value}
       </Text>
-      <Text as="small" fadedExtra>
-        {label}
+      <Text fadedExtra>
+        <small>{label}</small>
       </Text>
     </div>
   )

@@ -4,11 +4,11 @@
   "private": true,
   "dependencies": {
     "@reach/router": "^1.2.1",
+    "date-fns": "^1.29.0",
     "emotion": "^9.2.12",
     "emotion-theming": "^9.2.9",
     "graphql-request": "^1.8.2",
     "match-sorter": "^2.3.0",
-    "moment": "^2.22.2",
     "netlify-auth-providers": "^1.0.0-alpha5",
     "prop-types": "^15.6.2",
     "react": "^16.6.0",
@@ -25,7 +25,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run validate -s"
+      "pre-commit": "lint-staged && npm run build -s"
     }
   },
   "eslintConfig": {

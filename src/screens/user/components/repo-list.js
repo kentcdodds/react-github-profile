@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, {keyframes, css} from 'react-emotion/macro'
-import moment from 'moment'
+import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
 import matchSorter from 'match-sorter'
 import {Text, Anchor} from '../../../shared/pattern'
 import UserContext from '../user-context'
@@ -51,8 +51,11 @@ const ListItem = styled.li(
   ({theme}) => theme.common.borderBottom,
 )
 
+const Stat = styled(Text)({marginLeft: 10}).withComponent('strong')
+Stat.defaultProps = {fadedExtra: true}
+
 function RepoListItem({repo}) {
-  const timeUpdated = moment(repo.pushedAt).fromNow()
+  const timeUpdated = distanceInWordsToNow(repo.pushedAt)
   return (
     <ListItem>
       <div
@@ -60,15 +63,9 @@ function RepoListItem({repo}) {
           float: 'right',
         })}
       >
-        <Text fadedExtra as="strong">
-          {repo.language}
-        </Text>
-        <Text fadedExtra as="strong" className={css({marginLeft: 10})}>
-          &#9734; {repo.stargazersCount}
-        </Text>
-        <Text fadedExtra as="strong" className={css({marginLeft: 10})}>
-          &#4292; {repo.forksCount}
-        </Text>
+        <Stat>{repo.language}</Stat>
+        <Stat>&#9734; {repo.stargazersCount}</Stat>
+        <Stat>&#4292; {repo.forksCount}</Stat>
       </div>
       <div>
         <Anchor href={repo.url}>
@@ -85,11 +82,13 @@ function RepoListItem({repo}) {
           </Text>
         </Anchor>
       </div>
-      <Text fadedExtra as="p" className={css({margin: '0 0 10px'})}>
-        {repo.description}
-      </Text>
+      <p>
+        <Text fadedExtra className={css({margin: '0 0 10px'})}>
+          {repo.description}
+        </Text>
+      </p>
       <time>
-        <Text fadedExtra>Updated {timeUpdated}</Text>
+        <Text fadedExtra>Updated {timeUpdated} ago</Text>
       </time>
     </ListItem>
   )
