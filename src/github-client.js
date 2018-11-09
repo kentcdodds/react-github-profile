@@ -9,7 +9,7 @@ const GitHubClientContext = React.createContext()
 async function authWithGitHub() {
   return new Promise((resolve, reject) => {
     var authenticator = new netlify({
-      site_id: '2b9c1652-1f15-4c58-89f2-290796d9fc68',
+      site_id: process.env.REACT_APP_NETLIFY_SITE_ID,
     })
     authenticator.authenticate(
       {provider: 'github', scope: 'public_repo,read:org,read:user'},
@@ -73,7 +73,7 @@ class GitHubClientProvider extends React.Component {
       >
         {error ? (
           <div>
-            <p>Oh no! There was an error!</p>
+            <p>Oh no! There was an error.</p>
             <pre>{JSON.stringify(error, null, 2)}</pre>
           </div>
         ) : (
