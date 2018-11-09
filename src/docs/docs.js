@@ -1,6 +1,7 @@
 // eslint-disable-next-line
 import 'style-loader!css-loader!../global-styles.css'
 import React from 'react'
+import {css} from 'react-emotion'
 import ThemeProvider from '../shared/theme-provider'
 import User from '../screens/user'
 import * as GitHubContext from '../github-client'
@@ -21,3 +22,4 @@ function DocsApp() {
 }
 
 export default DocsApp
+export {fakeClient}

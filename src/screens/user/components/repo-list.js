@@ -52,7 +52,7 @@ const ListItem = styled.li(
 )
 
 const Stat = styled(Text)({marginLeft: 10}).withComponent('strong')
-Stat.defaultProps = {fadedExtra: true}
+Stat.defaultProps = {tint: 'fadedExtra'}
 
 function RepoListItem({repo}) {
   const timeUpdated = distanceInWordsToNow(repo.pushedAt)

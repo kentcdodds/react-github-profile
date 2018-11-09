@@ -9,16 +9,14 @@ import * as GitHubContext from './github-client'
 
 function App() {
   return (
-    <div>
-      <ThemeProvider>
-        <GitHubContext.Provider>
-          <Router>
-            <Home path="/" />
-            <User path="/:username" />
-          </Router>
-        </GitHubContext.Provider>
-      </ThemeProvider>
-    </div>
+    <ThemeProvider>
+      <GitHubContext.Provider>
+        <Router>
+          <Home path="/" />
+          <User path="/:username" />
+        </Router>
+      </GitHubContext.Provider>
+    </ThemeProvider>
   )
 }
 

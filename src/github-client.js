@@ -1,6 +1,7 @@
 import React from 'react'
 import netlify from 'netlify-auth-providers'
-import {Button} from './shared/pattern'
+import {css} from 'react-emotion'
+import {PrimaryButton} from './shared/pattern'
 import {GraphQLClient} from 'graphql-request'
 
 const GitHubClientContext = React.createContext()
@@ -60,14 +61,26 @@ class GitHubClientProvider extends React.Component {
       <GitHubClientContext.Provider value={client}>
         {children}
       </GitHubClientContext.Provider>
-    ) : error ? (
-      <div>
-        Oh no! Error! <pre>{JSON.stringify(error, null, 2)}</pre>
-      </div>
     ) : (
-      <div>
-        You have no client!
-        <Button onClick={this.handleLoginClick}>Sign In Here!</Button>
+      <div
+        className={css({
+          marginTop: 250,
+          display: 'flex',
+          justifyContent: 'center',
+        })}
+      >
+        {error ? (
+          <div>
+            <p>Oh no! Error!</p>
+            <pre>{JSON.stringify(error, null, 2)}</pre>
+          </div>
+        ) : (
+          <div>
+            <PrimaryButton onClick={this.handleLoginClick}>
+              Login with GitHub
+            </PrimaryButton>
+          </div>
+        )}
       </div>
     )
   }
