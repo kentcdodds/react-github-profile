@@ -161,7 +161,7 @@ class User extends Component {
               </Container>
             </UserContext.Provider>
           ) : (
-            <div>I have no idea what's up...</div>
+            <IsolatedContainer>I have no idea what's up...</IsolatedContainer>
           )
         }
       </Query>
