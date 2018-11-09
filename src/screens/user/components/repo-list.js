@@ -1,17 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, {keyframes, css} from 'react-emotion/macro'
+import styled, {css} from 'react-emotion/macro'
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
 import matchSorter from 'match-sorter'
 import {Text, Anchor} from '../../../shared/pattern'
 import UserContext from '../user-context'
-
-const bounce = keyframes({
-  '0%': {transform: 'translateY(0px)'},
-  '25%': {transform: 'translateY(3px)'},
-  '75%': {transform: 'translateY(-3px)'},
-  '100%': {transform: 'translateY(0px)'},
-})
 
 function RepoList({repos, filter}) {
   const matchingRepos = matchSorter(repos, filter, {
@@ -69,15 +62,7 @@ function RepoListItem({repo}) {
       </div>
       <div>
         <Anchor href={repo.url}>
-          <Text
-            size="superstandard"
-            className={css({
-              display: 'inline-block',
-              '&:hover': {
-                animation: `1s infinite ${bounce} linear`,
-              },
-            })}
-          >
+          <Text size="superstandard" className={css({display: 'inline-block'})}>
             {repo.name}
           </Text>
         </Anchor>
@@ -106,7 +91,7 @@ RepoListItem.propTypes = {
   }).isRequired,
 }
 
-function RepoListFetcher(props) {
+function RepoListUserConsumer(props) {
   return (
     <UserContext.Consumer>
       {userData => <RepoList repos={userData.repositories} {...props} />}
@@ -114,4 +99,4 @@ function RepoListFetcher(props) {
   )
 }
 
-export default RepoListFetcher
+export default RepoListUserConsumer

@@ -110,7 +110,7 @@ OrganizationsSection.propTypes = {
   ),
 }
 
-function ProfileFetcher() {
+function ProfileUserConsumer() {
   return (
     <UserContext.Consumer>
       {user => <Profile user={user} />}
@@ -118,4 +118,4 @@ function ProfileFetcher() {
   )
 }
 
-export default ProfileFetcher
+export default ProfileUserConsumer
