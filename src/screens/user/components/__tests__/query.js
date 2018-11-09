@@ -15,9 +15,10 @@ function renderQuery({
   children = jest.fn(() => null),
   query = '',
   variables = {},
+  normalize,
   ...options
 } = {}) {
-  const props = {query, variables, children}
+  const props = {query, variables, children, normalize}
   const utils = rtlRender(
     <GitHubClient.Context.Provider value={client}>
       <Query {...props} />
@@ -32,6 +33,7 @@ function renderQuery({
         children,
         query,
         variables,
+        normalize,
         ...options,
       }),
     client,
@@ -100,4 +102,16 @@ test('makes request if rerendered with new query', async () => {
   await wait()
   expect(client.request).toHaveBeenCalledTimes(1)
   expect(client.request).toHaveBeenCalledWith(newQuery, variables)
+})
+
+test('normalize allows modifying data', async () => {
+  const normalize = data => ({normalizedData: data})
+  const {children} = renderQuery({normalize})
+  await wait()
+  expect(children).toHaveBeenCalledWith({
+    data: {normalizedData: fakeResponse},
+    error: null,
+    fetching: false,
+    loaded: true,
+  })
 })

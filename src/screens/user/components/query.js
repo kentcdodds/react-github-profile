@@ -7,6 +7,10 @@ class Query extends Component {
   static propTypes = {
     query: PropTypes.string.isRequired,
     children: PropTypes.func.isRequired,
+    normalize: PropTypes.func,
+  }
+  static defaultProps = {
+    normalize: data => data,
   }
   static contextType = GitHub.Context
 
@@ -37,7 +41,7 @@ class Query extends Component {
       .request(this.props.query, this.props.variables)
       .then(res =>
         this.safeSetState({
-          data: res,
+          data: this.props.normalize(res),
           error: null,
           loaded: true,
           fetching: false,

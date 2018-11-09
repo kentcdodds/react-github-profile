@@ -121,7 +121,11 @@ class User extends Component {
     const {username} = this.props
     const {filter} = this.state
     return (
-      <Query query={userQuery} variables={{username}}>
+      <Query
+        query={userQuery}
+        variables={{username}}
+        normalize={normalizeUserData}
+      >
         {({loaded, fetching, data, error}) =>
           error ? (
             <IsolatedContainer>
@@ -133,7 +137,7 @@ class User extends Component {
               <Loading />
             </IsolatedContainer>
           ) : data ? (
-            <UserContext.Provider value={normalizeUserData(data)}>
+            <UserContext.Provider value={data}>
               <Container>
                 <Row>
                   <Column width="3">
