@@ -1,49 +1,64 @@
 /* @jsx jsx */
 import {jsx} from '@emotion/core'
 
+import {useState} from 'react'
 import {navigate} from '@reach/router'
 import {Input, PrimaryButton, IsolatedContainer} from '../../shared/pattern'
-
-const handleSubmit = e => {
-  e.preventDefault()
-  const username = e.target.elements.username.value.trim()
-  navigate(`/${username}`)
-}
+import {Loading} from '../../shared/loading'
 
 function Home() {
+  const [showLoading, setLoading] = useState(false)
+  function handleSubmit(e) {
+    setLoading(true)
+    e.preventDefault()
+    const username = e.target.elements.username.value.trim()
+    navigate(`/${username}`)
+  }
+
   return (
     <IsolatedContainer>
-      <form
-        onSubmit={handleSubmit}
+      <div
         css={{
           display: 'flex',
-          justifyContent: 'center',
-          maxWidth: 240,
-          margin: 'auto',
+          alignItems: 'center',
         }}
       >
-        <Input
-          type="text"
-          name="username"
-          placeholder="Enter a GitHub username"
-          autoFocus
+        <form
+          onSubmit={handleSubmit}
           css={{
-            borderRight: 'none',
-            borderTopRightRadius: '0',
-            borderBottomRightRadius: '0',
-            minWidth: 190,
+            display: 'flex',
+            justifyContent: 'center',
+            maxWidth: 240,
+            margin: 'auto',
           }}
-        />
-        <PrimaryButton
-          css={{
-            borderTopLeftRadius: 0,
-            borderBottomLeftRadius: 0,
-          }}
-          type="submit"
         >
-          Go
-        </PrimaryButton>
-      </form>
+          <Input
+            type="text"
+            name="username"
+            placeholder="Enter a GitHub username"
+            autoFocus
+            css={{
+              borderRight: 'none',
+              borderTopRightRadius: '0',
+              borderBottomRightRadius: '0',
+              minWidth: 190,
+            }}
+          />
+          <PrimaryButton
+            css={{
+              borderTopLeftRadius: 0,
+              borderBottomLeftRadius: 0,
+            }}
+            type="submit"
+          >
+            Go
+          </PrimaryButton>
+        </form>
+        <Loading
+          css={{opacity: showLoading ? null : 0, transition: 'all 0.2s'}}
+          size="small"
+        />
+      </div>
     </IsolatedContainer>
   )
 }
