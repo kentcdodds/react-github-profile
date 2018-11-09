@@ -1,7 +1,7 @@
 import React from 'react'
 import {navigate} from '@reach/router'
 import {css} from 'react-emotion/macro'
-import {Input, PrimaryButton} from '../../shared/pattern'
+import {Input, PrimaryButton, IsolatedContainer} from '../../shared/pattern'
 
 const handleSubmit = e => {
   e.preventDefault()
@@ -11,12 +11,7 @@ const handleSubmit = e => {
 
 function Home() {
   return (
-    <section
-      className={css({
-        paddingTop: 200,
-        textAlign: 'center',
-      })}
-    >
+    <IsolatedContainer>
       <form
         onSubmit={handleSubmit}
         className={css({
@@ -48,7 +43,7 @@ function Home() {
           Go
         </PrimaryButton>
       </form>
-    </section>
+    </IsolatedContainer>
   )
 }
 

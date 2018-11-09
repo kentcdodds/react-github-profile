@@ -2,7 +2,12 @@ import PropTypes from 'prop-types'
 import React, {Component} from 'react'
 import {css} from 'react-emotion'
 import {Container, Row, Column} from '../../shared/layout'
-import {Text, PrimaryButton} from '../../shared/pattern'
+import {
+  Text,
+  PrimaryButton,
+  IsolatedContainer,
+  ButtonLink,
+} from '../../shared/pattern'
 import {Context as GitHubContext} from '../../github-client'
 import Query from './components/query'
 import Profile from './components/profile'
@@ -116,9 +121,12 @@ class User extends Component {
       <Query query={userQuery} variables={{username}}>
         {({loaded, fetching, data, error}) =>
           error ? (
-            <div>There was an error loading the data</div>
+            <IsolatedContainer>
+              <p>There was an error loading the data</p>
+              <pre>{JSON.stringify(error, null, 2)}</pre>
+            </IsolatedContainer>
           ) : fetching ? (
-            <div>loading...</div>
+            <IsolatedContainer>loading...</IsolatedContainer>
           ) : data ? (
             <UserContext.Provider value={normalizeUserData(data)}>
               <Container>
@@ -131,6 +139,12 @@ class User extends Component {
                     >
                       Logout
                     </PrimaryButton>
+                    <ButtonLink
+                      className={css({marginTop: 20, width: '100%'})}
+                      to="/"
+                    >
+                      Try another
+                    </ButtonLink>
                   </Column>
                   <Column width="9">
                     <Text size="subheading">Repositories</Text>

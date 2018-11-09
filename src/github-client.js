@@ -27,11 +27,13 @@ class GitHubClientProvider extends React.Component {
   state = {client: this.props.client, error: null}
   getClient = token => {
     const headers = {Authorization: `bearer ${token}`}
-    return {
-      ...new GraphQLClient('https://api.github.com/graphql', {headers}),
+    const client = new GraphQLClient('https://api.github.com/graphql', {
+      headers,
+    })
+    return Object.assign(client, {
       login: this.login,
       logout: this.logout,
-    }
+    })
   }
   componentDidMount() {
     const token =
@@ -76,7 +78,7 @@ class GitHubClientProvider extends React.Component {
           </div>
         ) : (
           <div>
-            <PrimaryButton onClick={this.handleLoginClick}>
+            <PrimaryButton onClick={this.login}>
               Login with GitHub
             </PrimaryButton>
           </div>

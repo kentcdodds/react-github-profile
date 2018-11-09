@@ -1,4 +1,6 @@
-import styled from 'react-emotion/macro'
+import React from 'react'
+import styled, {css} from 'react-emotion/macro'
+import {Link} from '@reach/router'
 
 export const Section = styled.div(
   {
@@ -78,6 +80,8 @@ export const Button = styled.button({
   backgroundImage: 'none',
   border: '1px solid transparent',
   borderRadius: '4px',
+  textDecoration: 'none',
+  color: '#333',
 })
 
 export const PrimaryButton = styled(Button)({
@@ -93,6 +97,9 @@ export const PrimaryButton = styled(Button)({
     borderColor: '#122b40',
   },
 })
+
+export const ButtonLink = Button.withComponent(Link)
+export const PrimaryButtonLink = PrimaryButton.withComponent(Link)
 
 export const Image = styled.img(
   {
@@ -126,6 +133,20 @@ export const Anchor = styled.a({
     outlineOffset: '-2px',
   },
 })
+
+export function IsolatedContainer({children, className, ...props}) {
+  return (
+    <div
+      className={css(className, {
+        marginTop: 300,
+        display: 'flex',
+        justifyContent: 'center',
+      })}
+    >
+      <div>{children}</div>
+    </div>
+  )
+}
 
 /**
  * Makes it easier to create an emotion component which
