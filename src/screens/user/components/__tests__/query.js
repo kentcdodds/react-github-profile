@@ -45,7 +45,7 @@ function renderQuery({
 
 test('query makes requests to the client on mount', async () => {
   const {children, client, variables, query} = renderQuery()
-  expect(children).toHaveBeenCalledTimes(1)
+  expect(children).toHaveBeenCalledTimes(2)
   expect(children).toHaveBeenCalledWith({
     data: null,
     error: null,

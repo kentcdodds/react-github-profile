@@ -14,7 +14,7 @@ class Query extends Component {
   }
   static contextType = GitHub.Context
 
-  state = {loaded: false, fetching: true, data: null, error: null}
+  state = {loaded: false, fetching: false, data: null, error: null}
 
   componentDidMount() {
     this._isMounted = true
@@ -26,7 +26,6 @@ class Query extends Component {
       !isEqual(this.props.query, prevProps.query) ||
       !isEqual(this.props.variables, prevProps.variables)
     ) {
-      this.setState({fetching: true})
       this.query()
     }
   }
@@ -36,6 +35,7 @@ class Query extends Component {
   }
 
   query() {
+    this.setState({fetching: true})
     const client = this.context
     client
       .request(this.props.query, this.props.variables)
