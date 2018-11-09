@@ -20,13 +20,13 @@ const Container = styled.div({
   marginRight: 'auto',
   marginLeft: 'auto',
   [queries.phone]: {
-    width: '750px',
+    maxWidth: '750px',
   },
   [queries.tablet]: {
-    width: '970px',
+    maxWidth: '970px',
   },
   [queries.desktop]: {
-    width: '1170px',
+    maxWidth: '1170px',
   },
 })
 

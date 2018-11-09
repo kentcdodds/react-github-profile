@@ -20,7 +20,6 @@ function App() {
       </ThemeProvider>
     </div>
   )
-  // <User path="/:username" />
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))

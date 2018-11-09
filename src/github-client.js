@@ -1,6 +1,9 @@
 import React from 'react'
 import netlify from 'netlify-auth-providers'
+import {Button} from './shared/pattern'
 import {GraphQLClient} from 'graphql-request'
+
+const GitHubClientContext = React.createContext()
 
 async function authWithGitHub() {
   return new Promise((resolve, reject) => {
@@ -19,34 +22,35 @@ async function authWithGitHub() {
   })
 }
 
-const GitHubClientContext = React.createContext()
-
-function getClient(token) {
-  const headers = {Authorization: `bearer ${token}`}
-  return new GraphQLClient('https://api.github.com/graphql', {headers})
-}
-
 class GitHubClientProvider extends React.Component {
-  state = {client: null, error: null}
+  state = {client: this.props.client, error: null}
+  getClient = token => {
+    const headers = {Authorization: `bearer ${token}`}
+    return {
+      ...new GraphQLClient('https://api.github.com/graphql', {headers}),
+      login: this.login,
+      logout: this.logout,
+    }
+  }
   componentDidMount() {
     const token =
       window.localStorage.getItem('github-token') ||
       process.env.REACT_APP_GITHUB_TOKEN
-    if (token) {
-      this.setState({client: getClient(token)})
+    if (token && !this.state.client) {
+      this.setState({client: this.getClient(token)})
     }
   }
-  handleSignoutClick = () => {
+  logout = () => {
     window.localStorage.removeItem('github-token')
     this.setState({client: null, error: null})
   }
-  handleLoginClick = async () => {
+  login = async () => {
     const data = await authWithGitHub().catch(error => {
       console.log('Oh no', error)
       this.setState({error})
     })
     window.localStorage.setItem('github-token', data.token)
-    this.setState({client: getClient(data.token)})
+    this.setState({client: this.getClient(data.token)})
   }
   render() {
     const {client, error} = this.state
@@ -54,7 +58,6 @@ class GitHubClientProvider extends React.Component {
 
     return client ? (
       <GitHubClientContext.Provider value={client}>
-        <button onClick={this.handleSignoutClick}>Sign Out</button>
         {children}
       </GitHubClientContext.Provider>
     ) : error ? (
@@ -64,7 +67,7 @@ class GitHubClientProvider extends React.Component {
     ) : (
       <div>
         You have no client!
-        <button onClick={this.handleLoginClick}>Sign In Here!</button>
+        <Button onClick={this.handleLoginClick}>Sign In Here!</Button>
       </div>
     )
   }

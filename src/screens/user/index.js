@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types'
 import React, {Component} from 'react'
+import {css} from 'react-emotion'
 import {Container, Row, Column} from '../../shared/layout'
-import {Text} from '../../shared/pattern'
+import {Text, PrimaryButton} from '../../shared/pattern'
+import {Context as GitHubContext} from '../../github-client'
 import Query from './components/query'
 import Profile from './components/profile'
 import RepoFilter from './components/repo-filter'
@@ -100,6 +102,7 @@ class User extends Component {
   static propTypes = {
     username: PropTypes.string,
   }
+  static contextType = GitHubContext
   state = {filter: ''}
 
   handleFilterUpdate = filter => {
@@ -122,6 +125,12 @@ class User extends Component {
                 <Row>
                   <Column width="3">
                     <Profile />
+                    <PrimaryButton
+                      className={css({marginTop: 20, width: '100%'})}
+                      onClick={this.context.logout}
+                    >
+                      Logout
+                    </PrimaryButton>
                   </Column>
                   <Column width="9">
                     <Text size="subheading">Repositories</Text>
