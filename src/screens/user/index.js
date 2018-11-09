@@ -34,6 +34,8 @@ const userQuery = gql`
       repositories(
         privacy: PUBLIC
         first: 100
+        isFork: false
+        ownerAffiliations: [COLLABORATOR, OWNER]
         orderBy: {field: PUSHED_AT, direction: DESC}
       ) {
         totalCount
