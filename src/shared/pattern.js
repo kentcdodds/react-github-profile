@@ -24,15 +24,19 @@ const smallerHeading = {
 }
 
 export const Text = styled.span(
-  propStyles({
-    faded: ({theme}) => ({color: theme.colors.faded}),
-    fadedExtra: ({theme}) => ({color: theme.colors.fadedExtra}),
-    superheading: [heading, largerHeading, {fontSize: 36}],
-    heading: [heading, largerHeading, {fontSize: 30}],
-    subheading: [heading, largerHeading, {fontSize: 24}],
-    superstandard: [heading, smallerHeading, {fontSize: 18}],
-    standard: [heading, smallerHeading, {fontSize: 14}],
-    substandard: [heading, smallerHeading, {fontSize: 12}],
+  variantStyles({
+    tint: {
+      faded: ({theme}) => ({color: theme.colors.faded}),
+      fadedExtra: ({theme}) => ({color: theme.colors.fadedExtra}),
+    },
+    size: {
+      superheading: [heading, largerHeading, {fontSize: 36}],
+      heading: [heading, largerHeading, {fontSize: 30}],
+      subheading: [heading, largerHeading, {fontSize: 24}],
+      superstandard: [heading, smallerHeading, {fontSize: 18}],
+      standard: [heading, smallerHeading, {fontSize: 14}],
+      substandard: [heading, smallerHeading, {fontSize: 12}],
+    },
   }),
 )
 
@@ -138,12 +142,39 @@ export const Anchor = styled.a({
 function propStyles(styles) {
   return function dynamicStyles(props) {
     return Object.keys(props).map(key => {
-      if (props[key]) {
-        return typeof styles[key] === 'function'
-          ? styles[key](props)
-          : styles[key]
+      if (styles[key]) {
+        return applyStyles(styles[key], props)
       }
       return null
     })
   }
+}
+
+/**
+ * Makes it easier to create an emotion component
+ * which accepts enums for certain variants of styles
+ *
+ * Accepts an object where the key is a variant name
+ * (the prop consumers will use) and the value is an
+ * object where those keys are the possible values for
+ * the variant prop, and the value is the styles to be
+ * applied.
+ */
+function variantStyles(styles) {
+  return function dynamicStyles(props) {
+    return Object.entries(props).map(([key, value]) => {
+      if (styles[key]) {
+        return applyStyles(styles[key][value], props)
+      }
+      return null
+    })
+  }
+}
+
+function applyStyles(styles, props) {
+  return typeof styles === 'function'
+    ? styles(props)
+    : Array.isArray(styles)
+      ? styles.map(s => applyStyles(s, props))
+      : styles
 }

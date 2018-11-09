@@ -124,7 +124,7 @@ class User extends Component {
                     <Profile />
                   </Column>
                   <Column width="9">
-                    <Text subheading>Repositories</Text>
+                    <Text size="subheading">Repositories</Text>
                     <RepoFilter
                       filter={filter}
                       onUpdate={this.handleFilterUpdate}

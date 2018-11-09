@@ -10,8 +10,12 @@ function Profile({user}) {
     <div>
       <Section>
         <Image responsive rounded alt="User Avatar" src={user.avatarUrl} />
-        <Text heading>{user.name}</Text>
-        <Text standard faded className={css({fontWeight: 300, fontSize: 20})}>
+        <Text size="heading">{user.name}</Text>
+        <Text
+          size="standard"
+          tint="faded"
+          className={css({fontWeight: 300, fontSize: 20})}
+        >
           {user.login}
         </Text>
       </Section>
@@ -58,10 +62,10 @@ function ProfileStat({value, label}) {
         width: 80,
       })}
     >
-      <Text className={css({margin: 0})} heading>
+      <Text size="heading" className={css({margin: 0})}>
         {value}
       </Text>
-      <Text fadedExtra>
+      <Text tint="fadedExtra">
         <small>{label}</small>
       </Text>
     </div>
@@ -76,7 +80,7 @@ ProfileStat.propTypes = {
 function OrganizationsSection({orgs}) {
   return (
     <Section>
-      <Text superstandard>Organizations</Text>
+      <Text size="superstandard">Organizations</Text>
       {orgs.map(org => (
         <Image
           key={org.id}

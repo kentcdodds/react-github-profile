@@ -70,7 +70,7 @@ function RepoListItem({repo}) {
       <div>
         <Anchor href={repo.url}>
           <Text
-            superstandard
+            size="superstandard"
             className={css({
               display: 'inline-block',
               '&:hover': {
@@ -83,12 +83,12 @@ function RepoListItem({repo}) {
         </Anchor>
       </div>
       <p>
-        <Text fadedExtra className={css({margin: '0 0 10px'})}>
+        <Text tint="fadedExtra" className={css({margin: '0 0 10px'})}>
           {repo.description}
         </Text>
       </p>
       <time>
-        <Text fadedExtra>Updated {timeUpdated} ago</Text>
+        <Text tint="fadedExtra">Updated {timeUpdated} ago</Text>
       </time>
     </ListItem>
   )
