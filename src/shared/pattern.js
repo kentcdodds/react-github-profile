@@ -3,9 +3,7 @@ import styled, {css} from 'react-emotion/macro'
 import {Link} from '@reach/router'
 
 export const Section = styled.div(
-  {
-    padding: '20px 0',
-  },
+  {padding: '20px 0'},
   ({theme}) => theme.common.borderBottom,
 )
 
@@ -102,10 +100,7 @@ export const ButtonLink = Button.withComponent(Link)
 export const PrimaryButtonLink = PrimaryButton.withComponent(Link)
 
 export const Image = styled.img(
-  {
-    border: '0',
-    verticalAlign: 'middle',
-  },
+  {border: '0', verticalAlign: 'middle'},
   propStyles({
     responsive: {
       display: 'block',
@@ -121,9 +116,7 @@ export const Image = styled.img(
 export const Anchor = styled.a({
   color: '#337ab7',
   textDecoration: 'none',
-  '&:active,&:hover': {
-    outline: 0,
-  },
+  '&:active,&:hover': {outline: 0},
   '&:hover,&:focus': {
     color: '#23527c',
     textDecoration: 'underline',

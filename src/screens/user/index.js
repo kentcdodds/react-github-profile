@@ -8,6 +8,7 @@ import {
   IsolatedContainer,
   ButtonLink,
 } from '../../shared/pattern'
+import {Loading} from '../../shared/loading'
 import {Context as GitHubContext} from '../../github-client'
 import Query from './components/query'
 import Profile from './components/profile'
@@ -126,7 +127,9 @@ class User extends Component {
               <pre>{JSON.stringify(error, null, 2)}</pre>
             </IsolatedContainer>
           ) : fetching ? (
-            <IsolatedContainer>loading...</IsolatedContainer>
+            <IsolatedContainer>
+              <Loading />
+            </IsolatedContainer>
           ) : data ? (
             <UserContext.Provider value={normalizeUserData(data)}>
               <Container>

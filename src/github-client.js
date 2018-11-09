@@ -73,7 +73,7 @@ class GitHubClientProvider extends React.Component {
       >
         {error ? (
           <div>
-            <p>Oh no! Error!</p>
+            <p>Oh no! There was an error!</p>
             <pre>{JSON.stringify(error, null, 2)}</pre>
           </div>
         ) : (
