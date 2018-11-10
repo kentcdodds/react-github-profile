@@ -20,4 +20,7 @@ function App() {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const ui = <App />
+const container = document.getElementById('root')
+
+ReactDOM.render(ui, container)

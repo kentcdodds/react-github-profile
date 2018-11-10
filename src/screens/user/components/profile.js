@@ -2,7 +2,6 @@
 import {jsx} from '@emotion/core'
 
 import PropTypes from 'prop-types'
-import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import {Section, Text, Image} from '../../../shared/pattern'
 import UserContext from '../user-context'

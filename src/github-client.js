@@ -2,7 +2,7 @@
 import {jsx} from '@emotion/core'
 
 import React from 'react'
-import {Redirect, navigate, createHistory} from '@reach/router'
+import {navigate, createHistory} from '@reach/router'
 import netlify from 'netlify-auth-providers'
 import {GraphQLClient} from 'graphql-request'
 import {PrimaryButton} from './shared/pattern'
@@ -27,11 +27,12 @@ async function authWithGitHub() {
   })
 }
 
+const history = createHistory(window)
+
 class GitHubClientProvider extends React.Component {
   constructor(...args) {
     super(...args)
     this.state = {error: null}
-    this.history = createHistory(window)
     if (this.props.client) {
       this.state.client = this.props.client
     } else {
@@ -45,7 +46,7 @@ class GitHubClientProvider extends React.Component {
     if (!this.state.client) {
       navigate('/')
     }
-    this.unsubscribeHistory = this.history.listen(() => {
+    this.unsubscribeHistory = history.listen(() => {
       if (!this.state.client) {
         navigate('/')
       }
@@ -108,22 +109,9 @@ class GitHubClientProvider extends React.Component {
   }
 }
 
-function GitHubClientConsumer(props) {
-  return (
-    <Consumer {...props}>
-      {client => (client ? props.children(client) : <Redirect to="/" />)}
-    </Consumer>
-  )
-}
-
-Object.assign(GitHubClientContext, {
-  Provider: GitHubClientProvider,
-  Consumer: GitHubClientConsumer,
-})
-
 export {
   GitHubClientProvider as Provider,
-  GitHubClientConsumer as Consumer,
+  Consumer,
   GitHubClientContext as Context,
 }
 

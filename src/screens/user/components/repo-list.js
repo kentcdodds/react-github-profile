@@ -1,7 +1,6 @@
 /* @jsx jsx */
 import {jsx} from '@emotion/core'
 
-import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled/macro'
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
@@ -54,11 +53,7 @@ function RepoListItem({repo}) {
   const timeUpdated = distanceInWordsToNow(repo.pushedAt)
   return (
     <ListItem>
-      <div
-        css={{
-          float: 'right',
-        }}
-      >
+      <div css={{float: 'right'}}>
         <Stat>{repo.language}</Stat>
         <Stat>&#9734; {repo.stargazersCount}</Stat>
         <Stat>&#4292; {repo.forksCount}</Stat>

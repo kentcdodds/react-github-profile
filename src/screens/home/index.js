@@ -1,7 +1,6 @@
 /* @jsx jsx */
 import {jsx} from '@emotion/core'
 
-import React from 'react'
 import {navigate} from '@reach/router'
 import {Input, PrimaryButton, IsolatedContainer} from '../../shared/pattern'
 
