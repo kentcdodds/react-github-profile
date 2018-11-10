@@ -1,9 +1,19 @@
 import React from 'react'
 
-function Loading({className = '', ...props}) {
+const sizes = {
+  small: {zoom: 0.7},
+  mediuam: {zoom: 1},
+  large: {zoom: 2},
+}
+
+function Loading({size = 'medium', className = '', ...props}) {
   return (
     <>
-      <div className={`${className} lds-ellipsis`} {...props}>
+      <div
+        style={sizes[size]}
+        className={`${className} lds-ellipsis`}
+        {...props}
+      >
         <div />
         <div />
         <div />
