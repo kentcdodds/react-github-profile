@@ -8,18 +8,12 @@ const sizes = {
 
 function Loading({size = 'medium', className = '', ...props}) {
   return (
-    <>
-      <div
-        style={sizes[size]}
-        className={`${className} lds-ellipsis`}
-        {...props}
-      >
-        <div />
-        <div />
-        <div />
-        <div />
-      </div>
-    </>
+    <div style={sizes[size]} className={`${className} lds-ellipsis`} {...props}>
+      <div />
+      <div />
+      <div />
+      <div />
+    </div>
   )
 }
 
