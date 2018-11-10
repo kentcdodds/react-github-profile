@@ -1,6 +1,8 @@
+/* @jsx jsx */
+import {jsx} from '@emotion/core'
+
 import PropTypes from 'prop-types'
 import React from 'react'
-import {css} from 'react-emotion/macro'
 import ReactTooltip from 'react-tooltip'
 import {Section, Text, Image} from '../../../shared/pattern'
 import UserContext from '../user-context'
@@ -14,7 +16,7 @@ function Profile({user}) {
         <Text
           size="standard"
           tint="faded"
-          className={css({fontWeight: 300, fontSize: 20})}
+          css={{fontWeight: 300, fontSize: 20}}
         >
           {user.login}
         </Text>
@@ -38,7 +40,7 @@ Profile.propTypes = {
 
 function ProfileStatsSection({user}) {
   return (
-    <Section className={css({textAlign: 'center'})}>
+    <Section css={{textAlign: 'center'}}>
       <ProfileStat value={user.followersCount} label="followers" />
       <ProfileStat value={user.repositoriesCount} label="repositories" />
       <ProfileStat value={user.followingCount} label="following" />
@@ -57,12 +59,12 @@ ProfileStatsSection.propTypes = {
 function ProfileStat({value, label}) {
   return (
     <div
-      className={css({
+      css={{
         display: 'inline-block',
         width: 80,
-      })}
+      }}
     >
-      <Text size="heading" className={css({margin: 0})}>
+      <Text size="heading" css={{margin: 0}}>
         {value}
       </Text>
       <Text tint="fadedExtra">
@@ -87,12 +89,12 @@ function OrganizationsSection({orgs}) {
           src={org.avatarUrl}
           data-tip={org.login}
           alt={`${org.login} Avatar`}
-          className={css({
+          css={{
             borderRadius: 3,
             margin: 5,
             width: 42,
             height: 42,
-          })}
+          }}
         />
       ))}
       <ReactTooltip effect="solid" />
@@ -119,3 +121,9 @@ function ProfileUserConsumer() {
 }
 
 export default ProfileUserConsumer
+
+/*
+eslint
+no-unused-vars: ["warn", {"varsIgnorePattern": "(jsx)"}]
+react/react-in-jsx-scope: "off"
+*/

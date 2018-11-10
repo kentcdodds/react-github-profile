@@ -20,9 +20,9 @@ function renderQuery({
 } = {}) {
   const props = {query, variables, children, normalize}
   const utils = rtlRender(
-    <GitHubClient.Context.Provider value={client}>
+    <GitHubClient.Provider client={client}>
       <Query {...props} />
-    </GitHubClient.Context.Provider>,
+    </GitHubClient.Provider>,
     options,
   )
   return {
@@ -44,7 +44,7 @@ function renderQuery({
 }
 
 test('query makes requests to the client on mount', async () => {
-  const {children, client, variables, query} = renderQuery()
+  const {children, client, variables, query, debug} = renderQuery()
   expect(children).toHaveBeenCalledTimes(2)
   expect(children).toHaveBeenCalledWith({
     data: null,

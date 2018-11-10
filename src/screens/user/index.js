@@ -1,6 +1,8 @@
+/* @jsx jsx */
+import {jsx} from '@emotion/core'
+
 import PropTypes from 'prop-types'
-import React, {Component} from 'react'
-import {css} from 'react-emotion'
+import {Component} from 'react'
 import {Container, Row, Column} from '../../shared/layout'
 import {
   Text,
@@ -126,7 +128,7 @@ class User extends Component {
         variables={{username}}
         normalize={normalizeUserData}
       >
-        {({loaded, fetching, data, error}) =>
+        {({fetching, data, error}) =>
           error ? (
             <IsolatedContainer>
               <p>There was an error loading the data</p>
@@ -143,15 +145,12 @@ class User extends Component {
                   <Column width="3">
                     <Profile />
                     <PrimaryButton
-                      className={css({marginTop: 20, width: '100%'})}
+                      css={{marginTop: 20, width: '100%'}}
                       onClick={this.context.logout}
                     >
                       Logout
                     </PrimaryButton>
-                    <ButtonLink
-                      className={css({marginTop: 20, width: '100%'})}
-                      to="/"
-                    >
+                    <ButtonLink css={{marginTop: 20, width: '100%'}} to="/">
                       Try another
                     </ButtonLink>
                   </Column>
@@ -176,3 +175,9 @@ class User extends Component {
 }
 
 export default User
+
+/*
+eslint
+no-unused-vars: ["warn", {"varsIgnorePattern": "(jsx)"}]
+react/react-in-jsx-scope: "off"
+*/

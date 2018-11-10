@@ -1,6 +1,8 @@
+/* @jsx jsx */
+import {jsx} from '@emotion/core'
+
 import React from 'react'
 import {navigate} from '@reach/router'
-import {css} from 'react-emotion/macro'
 import {Input, PrimaryButton, IsolatedContainer} from '../../shared/pattern'
 
 const handleSubmit = e => {
@@ -14,30 +16,30 @@ function Home() {
     <IsolatedContainer>
       <form
         onSubmit={handleSubmit}
-        className={css({
+        css={{
           display: 'flex',
           justifyContent: 'center',
           maxWidth: 240,
           margin: 'auto',
-        })}
+        }}
       >
         <Input
           type="text"
           name="username"
           placeholder="Enter a GitHub username"
           autoFocus
-          className={css({
+          css={{
             borderRight: 'none',
             borderTopRightRadius: '0',
             borderBottomRightRadius: '0',
             minWidth: 190,
-          })}
+          }}
         />
         <PrimaryButton
-          className={css({
+          css={{
             borderTopLeftRadius: 0,
             borderBottomLeftRadius: 0,
-          })}
+          }}
           type="submit"
         >
           Go
@@ -48,3 +50,9 @@ function Home() {
 }
 
 export default Home
+
+/*
+eslint
+no-unused-vars: ["warn", {"varsIgnorePattern": "(jsx)"}]
+react/react-in-jsx-scope: "off"
+*/

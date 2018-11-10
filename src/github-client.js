@@ -1,10 +1,14 @@
+/* @jsx jsx */
+import {jsx} from '@emotion/core'
+
 import React from 'react'
+import {Redirect, navigate, createHistory} from '@reach/router'
 import netlify from 'netlify-auth-providers'
-import {css} from 'react-emotion'
-import {PrimaryButton} from './shared/pattern'
 import {GraphQLClient} from 'graphql-request'
+import {PrimaryButton} from './shared/pattern'
 
 const GitHubClientContext = React.createContext()
+const {Provider, Consumer} = GitHubClientContext
 
 async function authWithGitHub() {
   return new Promise((resolve, reject) => {
@@ -27,16 +31,28 @@ class GitHubClientProvider extends React.Component {
   constructor(...args) {
     super(...args)
     this.state = {error: null}
+    this.history = createHistory(window)
     if (this.props.client) {
       this.state.client = this.props.client
     } else {
-      const token =
-        window.localStorage.getItem('github-token') ||
-        process.env.REACT_APP_GITHUB_TOKEN
+      const token = window.localStorage.getItem('github-token')
       if (token) {
         this.state.client = this.getClient(token)
       }
     }
+  }
+  componentDidMount() {
+    if (!this.state.client) {
+      navigate('/')
+    }
+    this.unsubscribeHistory = this.history.listen(() => {
+      if (!this.state.client) {
+        navigate('/')
+      }
+    })
+  }
+  componentWillUnmount() {
+    this.unsubscribeHistory()
   }
   getClient = token => {
     const headers = {Authorization: `bearer ${token}`}
@@ -51,6 +67,7 @@ class GitHubClientProvider extends React.Component {
   logout = () => {
     window.localStorage.removeItem('github-token')
     this.setState({client: null, error: null})
+    navigate('/')
   }
   login = async () => {
     const data = await authWithGitHub().catch(error => {
@@ -65,16 +82,14 @@ class GitHubClientProvider extends React.Component {
     const {children} = this.props
 
     return client ? (
-      <GitHubClientContext.Provider value={client}>
-        {children}
-      </GitHubClientContext.Provider>
+      <Provider value={client}>{children}</Provider>
     ) : (
       <div
-        className={css({
+        css={{
           marginTop: 250,
           display: 'flex',
           justifyContent: 'center',
-        })}
+        }}
       >
         {error ? (
           <div>
@@ -93,10 +108,27 @@ class GitHubClientProvider extends React.Component {
   }
 }
 
-const {Consumer} = GitHubClientContext
+function GitHubClientConsumer(props) {
+  return (
+    <Consumer {...props}>
+      {client => (client ? props.children(client) : <Redirect to="/" />)}
+    </Consumer>
+  )
+}
+
+Object.assign(GitHubClientContext, {
+  Provider: GitHubClientProvider,
+  Consumer: GitHubClientConsumer,
+})
 
 export {
   GitHubClientProvider as Provider,
-  Consumer,
+  GitHubClientConsumer as Consumer,
   GitHubClientContext as Context,
 }
+
+/*
+eslint
+no-unused-vars: ["warn", {"varsIgnorePattern": "(jsx)"}]
+react/react-in-jsx-scope: "off"
+*/

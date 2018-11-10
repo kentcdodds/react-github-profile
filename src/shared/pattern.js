@@ -1,5 +1,7 @@
-import React from 'react'
-import styled, {css} from 'react-emotion/macro'
+/* @jsx jsx */
+import {jsx} from '@emotion/core'
+
+import styled from '@emotion/styled/macro'
 import {Link} from '@reach/router'
 
 export const Section = styled.div(
@@ -127,14 +129,15 @@ export const Anchor = styled.a({
   },
 })
 
-export function IsolatedContainer({children, className, ...props}) {
+export function IsolatedContainer({children, ...props}) {
   return (
     <div
-      className={css(className, {
+      css={{
         marginTop: 300,
         display: 'flex',
         justifyContent: 'center',
-      })}
+      }}
+      {...props}
     >
       <div>{children}</div>
     </div>
@@ -192,3 +195,9 @@ function applyStyles(styles, props) {
       ? styles.map(s => applyStyles(s, props))
       : styles
 }
+
+/*
+eslint
+no-unused-vars: ["warn", {"varsIgnorePattern": "(jsx)"}]
+react/react-in-jsx-scope: "off"
+*/

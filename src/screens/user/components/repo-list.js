@@ -1,6 +1,9 @@
+/* @jsx jsx */
+import {jsx} from '@emotion/core'
+
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, {css} from 'react-emotion/macro'
+import styled from '@emotion/styled/macro'
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
 import matchSorter from 'match-sorter'
 import {Text, Anchor} from '../../../shared/pattern'
@@ -16,12 +19,12 @@ function RepoList({repos, filter}) {
   })
   return (
     <ul
-      className={css({
+      css={{
         paddingLeft: 0,
         listStyle: 'none',
         marginTop: 0,
         marginBottom: 10,
-      })}
+      }}
     >
       {matchingRepos.map(repo => (
         <RepoListItem key={repo.id} repo={repo} />
@@ -52,9 +55,9 @@ function RepoListItem({repo}) {
   return (
     <ListItem>
       <div
-        className={css({
+        css={{
           float: 'right',
-        })}
+        }}
       >
         <Stat>{repo.language}</Stat>
         <Stat>&#9734; {repo.stargazersCount}</Stat>
@@ -62,13 +65,13 @@ function RepoListItem({repo}) {
       </div>
       <div>
         <Anchor href={repo.url}>
-          <Text size="superstandard" className={css({display: 'inline-block'})}>
+          <Text size="superstandard" css={{display: 'inline-block'}}>
             {repo.name}
           </Text>
         </Anchor>
       </div>
       <p>
-        <Text tint="fadedExtra" className={css({margin: '0 0 10px'})}>
+        <Text tint="fadedExtra" css={{margin: '0 0 10px'}}>
           {repo.description}
         </Text>
       </p>
@@ -100,3 +103,9 @@ function RepoListUserConsumer(props) {
 }
 
 export default RepoListUserConsumer
+
+/*
+eslint
+no-unused-vars: ["warn", {"varsIgnorePattern": "(jsx)"}]
+react/react-in-jsx-scope: "off"
+*/
