@@ -2,7 +2,7 @@ import React from 'react'
 
 const sizes = {
   small: {zoom: 0.7},
-  mediuam: {zoom: 1},
+  medium: {zoom: 1},
   large: {zoom: 2},
 }
 
