@@ -1,10 +1,17 @@
 /* @jsx jsx */
 import {jsx} from '@emotion/core'
 
-import {useContext, useState} from 'react'
+import {Suspense, useEffect, useContext, useState} from 'react'
 import PropTypes from 'prop-types'
 import {Container, Row, Column} from '../../shared/layout'
-import {Text, PrimaryButton, ButtonLink} from '../../shared/pattern'
+import {
+  IsolatedContainer,
+  Text,
+  PrimaryButton,
+  ButtonLink,
+} from '../../shared/pattern'
+import {Loading} from '../../shared/loading'
+import singletonState from '../../shared/state'
 import {Context as GitHubContext} from '../../github-client'
 import Profile from './components/profile'
 import RepoFilter from './components/repo-filter'
@@ -141,7 +148,25 @@ User.propTypes = {
   username: PropTypes.string,
 }
 
-export default User
+function SuspendedUser(props) {
+  useEffect(() => {
+    singletonState.suspenseMaxDuration = 0
+  })
+  return (
+    <Suspense
+      maxDuration={singletonState.suspenseMaxDuration}
+      fallback={
+        <IsolatedContainer>
+          <Loading />
+        </IsolatedContainer>
+      }
+    >
+      <User {...props} />
+    </Suspense>
+  )
+}
+
+export default SuspendedUser
 
 /*
 eslint

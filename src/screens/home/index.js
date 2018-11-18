@@ -5,6 +5,7 @@ import {useState} from 'react'
 import {navigate} from '@reach/router'
 import {Input, PrimaryButton, IsolatedContainer} from '../../shared/pattern'
 import {Loading} from '../../shared/loading'
+import singletonState from '../../shared/state'
 
 function Home() {
   const [showLoading, setLoading] = useState(false)
@@ -12,6 +13,7 @@ function Home() {
     setLoading(true)
     e.preventDefault()
     const username = e.target.elements.username.value.trim()
+    singletonState.suspenseMaxDuration = 2000
     navigate(`/${username}`)
   }
 
