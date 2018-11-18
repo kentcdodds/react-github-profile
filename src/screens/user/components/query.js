@@ -6,6 +6,7 @@ import * as GitHub from '../../../github-client'
 class Query extends Component {
   static propTypes = {
     query: PropTypes.string.isRequired,
+    variables: PropTypes.object,
     children: PropTypes.func.isRequired,
     normalize: PropTypes.func,
   }
