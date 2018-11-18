@@ -15,6 +15,13 @@ function Query({query, variables, normalize = data => data, children}) {
     },
   )
 
+  const mountedRef = useRef(false)
+  useEffect(() => {
+    mountedRef.current = true
+    return () => (mountedRef.current = false)
+  }, [])
+  const safeSetState = (...args) => mountedRef.current && setState(...args)
+
   useEffect(() => {
     if (isEqual(previousInputs.current, [query, variables])) {
       return
@@ -23,7 +30,7 @@ function Query({query, variables, normalize = data => data, children}) {
     client
       .request(query, variables)
       .then(res =>
-        setState({
+        safeSetState({
           data: normalize(res),
           error: null,
           loaded: true,
@@ -31,7 +38,7 @@ function Query({query, variables, normalize = data => data, children}) {
         }),
       )
       .catch(error =>
-        setState({
+        safeSetState({
           error,
           data: null,
           loaded: false,
