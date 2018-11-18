@@ -1,11 +1,10 @@
 import './global-styles.css'
-import React, {Suspense} from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import {Router} from '@reach/router'
 import ErrorBoundary from 'react-error-boundary'
 import ThemeProvider from './shared/theme-provider'
 import {IsolatedContainer} from './shared/pattern'
-import {Loading} from './shared/loading'
 import Home from './screens/home'
 import User from './screens/user'
 import * as GitHubContext from './github-client'
@@ -24,19 +23,10 @@ function App() {
     <ThemeProvider>
       <GitHubContext.Provider>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <Suspense
-            maxDuration={2000}
-            fallback={
-              <IsolatedContainer>
-                <Loading />
-              </IsolatedContainer>
-            }
-          >
-            <Router>
-              <Home path="/" />
-              <User path="/:username" />
-            </Router>
-          </Suspense>
+          <Router>
+            <Home path="/" />
+            <User path="/:username" />
+          </Router>
         </ErrorBoundary>
       </GitHubContext.Provider>
     </ThemeProvider>

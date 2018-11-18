@@ -12,7 +12,7 @@ function Home() {
     setLoading(true)
     e.preventDefault()
     const username = e.target.elements.username.value.trim()
-    navigate(`/${username}`)
+    navigate(`/${username}`, {state: {suspenseMaxDuration: 2000}})
   }
 
   return (
