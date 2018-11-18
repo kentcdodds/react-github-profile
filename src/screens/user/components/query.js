@@ -3,17 +3,15 @@ import PropTypes from 'prop-types'
 import isEqual from 'lodash/isEqual'
 import * as GitHub from '../../../github-client'
 
-function Query({query, variables, normalize = data => data, children}) {
-  const client = useContext(GitHub.Context)
-  const [state, setState] = useReducer(
+function useSetState(initialState) {
+  return useReducer(
     (state, newState) => ({...state, ...newState}),
-    {
-      loaded: false,
-      fetching: false,
-      data: null,
-      error: null,
-    },
+    initialState,
   )
+}
+
+function useSafeSetState(initialState) {
+  const [state, setState] = useSetState(initialState)
 
   const mountedRef = useRef(false)
   useEffect(() => {
@@ -21,6 +19,18 @@ function Query({query, variables, normalize = data => data, children}) {
     return () => (mountedRef.current = false)
   }, [])
   const safeSetState = (...args) => mountedRef.current && setState(...args)
+
+  return [state, safeSetState]
+}
+
+function Query({query, variables, normalize = data => data, children}) {
+  const client = useContext(GitHub.Context)
+  const [state, setState] = useSafeSetState({
+    loaded: false,
+    fetching: false,
+    data: null,
+    error: null,
+  })
 
   useEffect(() => {
     if (isEqual(previousInputs.current, [query, variables])) {
@@ -30,7 +40,7 @@ function Query({query, variables, normalize = data => data, children}) {
     client
       .request(query, variables)
       .then(res =>
-        safeSetState({
+        setState({
           data: normalize(res),
           error: null,
           loaded: true,
@@ -38,7 +48,7 @@ function Query({query, variables, normalize = data => data, children}) {
         }),
       )
       .catch(error =>
-        safeSetState({
+        setState({
           error,
           data: null,
           loaded: false,
