@@ -1,8 +1,8 @@
 /* @jsx jsx */
 import {jsx} from '@emotion/core'
 
-import PropTypes from 'prop-types'
 import {Component} from 'react'
+import PropTypes from 'prop-types'
 import {Container, Row, Column} from '../../shared/layout'
 import {
   Text,
