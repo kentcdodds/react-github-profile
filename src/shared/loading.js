@@ -17,4 +17,4 @@ function Loading({size = 'medium', className = '', ...props}) {
   )
 }
 
-export {Loading}
+export default Loading

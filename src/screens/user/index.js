@@ -9,8 +9,8 @@ import {
   PrimaryButton,
   IsolatedContainer,
   ButtonLink,
+  LoadingMessagePage,
 } from '../../shared/pattern'
-import {Loading} from '../../shared/loading'
 import {Context as GitHubContext} from '../../github-client'
 import Query from './components/query'
 import Profile from './components/profile'
@@ -135,14 +135,7 @@ class User extends Component {
               <pre>{JSON.stringify(error, null, 2)}</pre>
             </IsolatedContainer>
           ) : fetching ? (
-            <IsolatedContainer>
-              <div style={{textAlign: 'center'}}>
-                <p>
-                  <Text size="subheading">Loading data for {username}</Text>
-                </p>
-                <Loading />
-              </div>
-            </IsolatedContainer>
+            <LoadingMessagePage>Loading data for {username}</LoadingMessagePage>
           ) : data ? (
             <UserContext.Provider value={data}>
               <Container>

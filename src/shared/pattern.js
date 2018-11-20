@@ -3,6 +3,7 @@ import {jsx} from '@emotion/core'
 
 import styled from '@emotion/styled/macro'
 import {Link} from '@reach/router'
+import Loading from './loading'
 
 export const Section = styled.div(
   {padding: '20px 0'},
@@ -141,6 +142,19 @@ export function IsolatedContainer({children, ...props}) {
     >
       <div>{children}</div>
     </div>
+  )
+}
+
+export function LoadingMessagePage({children}) {
+  return (
+    <IsolatedContainer>
+      <div css={{textAlign: 'center'}}>
+        <p>
+          <Text size="subheading">{children}</Text>
+        </p>
+        <Loading />
+      </div>
+    </IsolatedContainer>
   )
 }
 

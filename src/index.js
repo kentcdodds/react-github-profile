@@ -5,8 +5,7 @@ import {Router} from '@reach/router'
 import ErrorBoundary from 'react-error-boundary'
 import loadable from 'react-loadable'
 import ThemeProvider from './shared/theme-provider'
-import {IsolatedContainer, Text} from './shared/pattern'
-import {Loading} from './shared/loading'
+import {IsolatedContainer, LoadingMessagePage} from './shared/pattern'
 import * as GitHubContext from './github-client'
 
 function LoadingFallback({error, pastDelay}) {
@@ -15,14 +14,7 @@ function LoadingFallback({error, pastDelay}) {
     throw error
   }
   return pastDelay ? (
-    <IsolatedContainer>
-      <div style={{textAlign: 'center'}}>
-        <p>
-          <Text size="subheading">Loading Application</Text>
-        </p>
-        <Loading />
-      </div>
-    </IsolatedContainer>
+    <LoadingMessagePage>Loading Application</LoadingMessagePage>
   ) : null
 }
 
