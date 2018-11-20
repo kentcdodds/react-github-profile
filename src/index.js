@@ -1,30 +1,14 @@
 import './global-styles.css'
-import React from 'react'
+import React, {Suspense} from 'react'
 import ReactDOM from 'react-dom'
 import {Router} from '@reach/router'
 import ErrorBoundary from 'react-error-boundary'
-import loadable from 'react-loadable'
 import ThemeProvider from './shared/theme-provider'
 import {IsolatedContainer, LoadingMessagePage} from './shared/pattern'
 import * as GitHubContext from './github-client'
 
-function LoadingFallback({error, pastDelay}) {
-  if (error) {
-    // our ErrorBoundary will catch this
-    throw error
-  }
-  return <LoadingMessagePage>Loading Application</LoadingMessagePage>
-}
-
-const Home = loadable({
-  loader: () => import('./screens/home'),
-  loading: LoadingFallback,
-})
-
-const User = loadable({
-  loader: () => import('./screens/user'),
-  loading: LoadingFallback,
-})
+const Home = React.lazy(() => import('./screens/home'))
+const User = React.lazy(() => import('./screens/user'))
 
 function ErrorFallback({error}) {
   return (
@@ -40,10 +24,16 @@ function App() {
     <ThemeProvider>
       <GitHubContext.Provider>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <Router>
-            <Home path="/" />
-            <User path="/:username" />
-          </Router>
+          <Suspense
+            fallback={
+              <LoadingMessagePage>Loading Application</LoadingMessagePage>
+            }
+          >
+            <Router>
+              <Home path="/" />
+              <User path="/:username" />
+            </Router>
+          </Suspense>
         </ErrorBoundary>
       </GitHubContext.Provider>
     </ThemeProvider>
