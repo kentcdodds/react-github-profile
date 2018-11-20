@@ -8,18 +8,14 @@ import ThemeProvider from './shared/theme-provider'
 import {IsolatedContainer} from './shared/pattern'
 import * as GitHubContext from './github-client'
 
-function Loading(props) {
-  if (props.error) {
-    return (
-      <div>
-        Error! <button onClick={props.retry}>Retry</button>
-      </div>
-    )
-  } else if (props.pastDelay) {
-    return <div>Loading...</div>
-  } else {
-    return null
-  }
+function Loading({error, retry, pastDelay}) {
+  return error ? (
+    <div>
+      Error! <button onClick={retry}>Retry</button>
+    </div>
+  ) : pastDelay ? (
+    <div>Loading...</div>
+  ) : null
 }
 
 const Home = loadable({
