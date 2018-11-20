@@ -5,26 +5,36 @@ import {Router} from '@reach/router'
 import ErrorBoundary from 'react-error-boundary'
 import loadable from 'react-loadable'
 import ThemeProvider from './shared/theme-provider'
-import {IsolatedContainer} from './shared/pattern'
+import {IsolatedContainer, Text} from './shared/pattern'
+import {Loading} from './shared/loading'
 import * as GitHubContext from './github-client'
 
-function Loading({error, pastDelay}) {
+function LoadingFallback({error, pastDelay}) {
   if (error) {
     // our ErrorBoundary will catch this
     throw error
   }
-  return pastDelay ? <div>Loading...</div> : null
+  return pastDelay ? (
+    <IsolatedContainer>
+      <div style={{textAlign: 'center'}}>
+        <p>
+          <Text size="subheading">Loading Application</Text>
+        </p>
+        <Loading />
+      </div>
+    </IsolatedContainer>
+  ) : null
 }
 
 const Home = loadable({
   loader: () => import('./screens/home'),
-  loading: Loading,
+  loading: LoadingFallback,
   delay: 300,
 })
 
 const User = loadable({
   loader: () => import('./screens/user'),
-  loading: Loading,
+  loading: LoadingFallback,
   delay: 300,
 })
 

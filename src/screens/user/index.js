@@ -136,7 +136,12 @@ class User extends Component {
             </IsolatedContainer>
           ) : fetching ? (
             <IsolatedContainer>
-              <Loading />
+              <div css={{textAlign: 'center'}}>
+                <p>
+                  <Text size="subheading">Loading data for {username}</Text>
+                </p>
+                <Loading />
+              </div>
             </IsolatedContainer>
           ) : data ? (
             <UserContext.Provider value={data}>
