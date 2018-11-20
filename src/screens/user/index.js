@@ -136,7 +136,7 @@ class User extends Component {
             </IsolatedContainer>
           ) : fetching ? (
             <IsolatedContainer>
-              <div css={{textAlign: 'center'}}>
+              <div style={{textAlign: 'center'}}>
                 <p>
                   <Text size="subheading">Loading data for {username}</Text>
                 </p>
