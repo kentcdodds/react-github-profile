@@ -20,9 +20,9 @@ function Profile({user}) {
         </Text>
       </Section>
       <ProfileStatsSection user={user} />
-      {!!user.organizations.length && (
+      {user.organizations.length ? (
         <OrganizationsSection orgs={user.organizations} />
-      )}
+      ) : null}
     </div>
   )
 }
