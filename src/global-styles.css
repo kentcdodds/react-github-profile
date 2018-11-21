@@ -78,3 +78,60 @@ body {
     transform: translate(19px, 0);
   }
 }
+
+/* Thanks to https://medium.freecodecamp.org/a-step-by-step-guide-to-making-pure-css-tooltips-3d5a3e237346 */
+[data-tooltip] {
+  position: relative;
+  display: inline-block;
+}
+
+[data-tooltip]::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 4px 6px 0 6px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.7) transparent transparent transparent;
+  z-index: 99;
+  opacity: 0;
+  transition: 0.15s opacity;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  transform: translateX(-50%) translateY(-100%);
+  background: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  min-width: 80px;
+  border-radius: 5px;
+  pointer-events: none;
+  padding: 4px 8px;
+  z-index: 99;
+  opacity: 0;
+  transition: 0.15s opacity;
+}
+
+[data-tooltip]:hover::after,
+[data-tooltip]:hover::before,
+[data-tooltip]:focus::after,
+[data-tooltip]:focus::before,
+[data-tooltip]:active::after,
+[data-tooltip]:active::before {
+  opacity: 1;
+}
+
+[data-tooltip]:hover,
+[data-tooltip]:hover,
+[data-tooltip]:focus,
+[data-tooltip]:focus,
+[data-tooltip]:active,
+[data-tooltip]:active {
+  outline: none;
+}

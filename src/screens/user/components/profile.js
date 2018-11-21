@@ -2,7 +2,6 @@
 import {jsx} from '@emotion/core'
 
 import PropTypes from 'prop-types'
-import ReactTooltip from 'react-tooltip'
 import {Section, Text, Image} from '../../../shared/pattern'
 import UserContext from '../user-context'
 
@@ -83,20 +82,19 @@ function OrganizationsSection({orgs}) {
     <Section>
       <Text size="superstandard">Organizations</Text>
       {orgs.map(org => (
-        <Image
-          key={org.id}
-          src={org.avatarUrl}
-          data-tip={org.login}
-          alt={`${org.login} Avatar`}
-          css={{
-            borderRadius: 3,
-            margin: 5,
-            width: 42,
-            height: 42,
-          }}
-        />
+        <a key={org.id} href={org.url} data-tooltip={org.login}>
+          <Image
+            src={org.avatarUrl}
+            alt={`${org.login} Avatar`}
+            css={{
+              borderRadius: 3,
+              margin: 5,
+              width: 42,
+              height: 42,
+            }}
+          />
+        </a>
       ))}
-      <ReactTooltip effect="solid" />
     </Section>
   )
 }

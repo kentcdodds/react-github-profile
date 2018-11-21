@@ -17,8 +17,7 @@
     "react-cache": "2.0.0-alpha.1",
     "react-dom": "16.7.0-alpha.2",
     "react-error-boundary": "1.2.3",
-    "react-loadable": "^5.5.0",
-    "react-tooltip": "3.9.0"
+    "react-loadable": "^5.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
