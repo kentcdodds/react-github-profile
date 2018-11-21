@@ -4,7 +4,7 @@ import {jsx} from '@emotion/core'
 import {navigate} from '@reach/router'
 import {Input, PrimaryButton, IsolatedContainer} from '../../shared/pattern'
 
-const handleSubmit = e => {
+function handleSubmit(e) {
   e.preventDefault()
   const username = e.target.elements.username.value.trim()
   navigate(`/${username}`)
