@@ -13,21 +13,17 @@ function LoadingFallback({error, pastDelay}) {
     // our ErrorBoundary will catch this
     throw error
   }
-  return pastDelay ? (
-    <LoadingMessagePage>Loading Application</LoadingMessagePage>
-  ) : null
+  return <LoadingMessagePage>Loading Application</LoadingMessagePage>
 }
 
 const Home = loadable({
   loader: () => import('./screens/home'),
   loading: LoadingFallback,
-  delay: 300,
 })
 
 const User = loadable({
   loader: () => import('./screens/user'),
   loading: LoadingFallback,
-  delay: 300,
 })
 
 function ErrorFallback({error}) {
