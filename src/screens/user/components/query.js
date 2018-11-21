@@ -23,6 +23,14 @@ function useSafeSetState(initialState) {
   return [state, safeSetState]
 }
 
+function usePrevious(value) {
+  const ref = useRef()
+  useEffect(() => {
+    ref.current = value
+  })
+  return ref.current
+}
+
 function Query({query, variables, normalize = data => data, children}) {
   const client = useContext(GitHub.Context)
   const [state, setState] = useSafeSetState({
@@ -33,7 +41,7 @@ function Query({query, variables, normalize = data => data, children}) {
   })
 
   useEffect(() => {
-    if (isEqual(previousInputs.current, [query, variables])) {
+    if (isEqual(previousInputs, [query, variables])) {
       return
     }
     setState({fetching: true})
@@ -56,11 +64,7 @@ function Query({query, variables, normalize = data => data, children}) {
         }),
       )
   })
-
-  const previousInputs = useRef()
-  useEffect(() => {
-    previousInputs.current = [query, variables]
-  })
+  const previousInputs = usePrevious([query, variables])
 
   return children(state)
 }
